@@ -1,0 +1,4 @@
+{
+    "mongoURI":
+      "mongodb+srv://AdtelligentAdmin:Fy7YqhRv8ttqG93@cluster0.vtrdo.mongodb.net/CourseTracker?retryWrites=true&w=majority"
+  }

@@ -1,0 +1,22 @@
+{
+
+    "title": "Zero to Mastery",
+
+    "description": "This is the description.  lorem ipsum blah bleep bloop",
+
+    "topics": ["Javascript", "React", "HTML", "CSS"],
+
+    "departmentId": "depatodeshimasho",
+
+    "keywords": ["ting", "tand", "yon"],
+
+    "rating": {
+
+        "one": 2,
+        "two": 1,
+        "three": 13,
+        "four": 46,
+        "five": 98
+    }
+
+}
