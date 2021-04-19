@@ -8,7 +8,7 @@ import CourseListResults from '../Components/CourseListResults.js'
 function CourseListPage({courses}) {
     return (
 
-	<div id="page" class="theia-exception">
+	<div id="page" className="theia-exception">
 
 
 		

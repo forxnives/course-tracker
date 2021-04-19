@@ -6,8 +6,8 @@ function UserCourses() {
     return (
         <>
 		<SearchSection/>
-        <div class="sub_header_in sticky_header">
-		<div class="container">
+        <div className="sub_header_in sticky_header">
+		<div className="container">
 			<h1>Your Courses</h1>
 		</div>
 
@@ -15,8 +15,8 @@ function UserCourses() {
 
 	
 	<main>
-		<div class="container margin_60_35">
-			<div class="box_booking">
+		<div className="container margin_60_35">
+			<div className="box_booking">
 				
             <UserCourseStrip />
 

@@ -4,28 +4,28 @@ function SearchSection() {
     return (
         <>
         		<div id="results">
-		   <div class="container">
-			   <div class="row">
-				   <div class="col-lg-3 col-md-4 col-10">
+		   <div className="container">
+			   <div className="row">
+				   <div className="col-lg-3 col-md-4 col-10">
 					   <h4><strong>145</strong> result for All listing</h4>
 				   </div>
-				   <div class="col-lg-9 col-md-8 col-2">
-					   <a href="#0" class="search_mob btn_search_mobile"></a> 
-						<div class="row no-gutters custom-search-input-2 inner">
-							<div class="col-lg-4">
-								<div class="form-group">
-									<input class="form-control" type="text" placeholder="What are you looking for..."/>
-									<i class="icon_search"></i>
+				   <div className="col-lg-9 col-md-8 col-2">
+					   <a href="#0" className="search_mob btn_search_mobile"></a> 
+						<div className="row no-gutters custom-search-input-2 inner">
+							<div className="col-lg-4">
+								<div className="form-group">
+									<input className="form-control" type="text" placeholder="What are you looking for..."/>
+									<i className="icon_search"></i>
 								</div>
 							</div>
-							<div class="col-lg-4">
-								<div class="form-group">
-									<input class="form-control" type="text" placeholder="Where"/>
-									<i class="icon_pin_alt"></i>
+							<div className="col-lg-4">
+								<div className="form-group">
+									<input className="form-control" type="text" placeholder="Where"/>
+									<i className="icon_pin_alt"></i>
 								</div>
 							</div>
-							<div class="col-lg-3">
-								<select class="wide">
+							<div className="col-lg-3">
+								<select className="wide">
 									<option>All Categories</option>	
 									<option>Shops</option>
 									<option>Hotels</option>
@@ -35,24 +35,24 @@ function SearchSection() {
 									<option>Fitness</option>
 								</select>
 							</div>
-							<div class="col-lg-1">
+							<div className="col-lg-1">
 								<input type="submit" value="Search"/>
 							</div>
 						</div>
 				   </div>
 			   </div>
 
-				<div class="search_mob_wp">
-					<div class="custom-search-input-2">
-						<div class="form-group">
-							<input class="form-control" type="text" placeholder="What are you looking for..."/>
-							<i class="icon_search"></i>
+				<div className="search_mob_wp">
+					<div className="custom-search-input-2">
+						<div className="form-group">
+							<input className="form-control" type="text" placeholder="What are you looking for..."/>
+							<i className="icon_search"></i>
 						</div>
-						<div class="form-group">
-							<input class="form-control" type="text" placeholder="Where"/>
-							<i class="icon_pin_alt"></i>
+						<div className="form-group">
+							<input className="form-control" type="text" placeholder="Where"/>
+							<i className="icon_pin_alt"></i>
 						</div>
-						<select class="wide">
+						<select className="wide">
 							<option>All Categories</option>	
 							<option>Shops</option>
 							<option>Hotels</option>

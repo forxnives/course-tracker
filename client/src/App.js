@@ -8,6 +8,8 @@ import LoginPage from './Pages/LoginPage.js'
 import RegisterPage from './Pages/RegisterPage.js'
 import NewCoursePage from './Pages/NewCoursePage';
 
+import {fetchCourses} from './utils/fetchUtils.js'
+
 
 
 
@@ -19,32 +21,11 @@ function App() {
 
 	useEffect(()=>{
         
-		const retrieveCourses = async (e) => {
-	
-			try {
-				console.log(window.location.origin)
-				const response = await fetch(`http://localhost:8082/courses`, {
-					method: 'GET',
-					headers: {
-					  'Content-Type': 'application/json',
-					},
-				
-				})
-				if (response.status===500) {
-					throw new Error('Failure to retrieve')
-				}
-	
-				const data = await response.json()
-				setCourses(data.data)
-			  
-			} catch(err) {
-				setError(err.message);
-			}
-		}
 
-		retrieveCourses()
+		fetchCourses().then(courses => setCourses(courses) ).catch(error => setError(error.message)) 
 
-		console.log('thing work??')
+
+
 
 	},[])
 

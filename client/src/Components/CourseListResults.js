@@ -13,14 +13,14 @@ function CourseListResults({courses}) {
 
 
     return (
-		<div class="container margin_60_35">
-			<div class="row">
+		<div className="container margin_60_35">
+			<div className="row">
 
                 <CourseListFilters />
 
-				<div class="col-lg-9">
+				<div className="col-lg-9">
 
-					<div class="row">
+					<div className="row">
 
 						{courses.map((course, i)=> (
 							<CourseCard key={`course_${i}`} course={course}/>
@@ -39,7 +39,7 @@ function CourseListResults({courses}) {
 
 
 
-					<p class="text-center"><a href="#0" class="btn_1 rounded add_top_30">Load more</a></p>
+					<p className="text-center"><a href="#0" className="btn_1 rounded add_top_30">Load more</a></p>
 				</div>
 
 			</div>		

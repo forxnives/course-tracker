@@ -9,7 +9,7 @@ import CourseStrip from '../Components/CourseStrip.js'
 
 function CourseDetailsPage() {
     return (
-        <div id="page" class="theia-exception">
+        <div id="page" className="theia-exception">
 		
 
 
@@ -20,10 +20,10 @@ function CourseDetailsPage() {
 
 
             
-            <nav class="secondary_nav sticky_horizontal_2">
-                <div class="container">
-                    <ul class="clearfix">
-                        <li><a href="#description" class="active">Description</a></li>
+            <nav className="secondary_nav sticky_horizontal_2">
+                <div className="container">
+                    <ul className="clearfix">
+                        <li><a href="#description" className="active">Description</a></li>
                         <li><a href="#reviews">Reviews</a></li>
                         <li><a href="#sidebar"></a></li>
                     </ul>
@@ -32,9 +32,9 @@ function CourseDetailsPage() {
 
 
     
-            <div class="container margin_60_35">
-                    <div class="row">
-                        <div class="col-lg-8">
+            <div className="container margin_60_35">
+                    <div className="row">
+                        <div className="col-lg-8">
 
                             {/* <CourseDetailsDescription /> */}
 
@@ -48,7 +48,7 @@ function CourseDetailsPage() {
 
                                 <CourseDetailsRating />
     
-                                <div class="reviews-container">
+                                <div className="reviews-container">
 
                                     <ReviewComment />
 

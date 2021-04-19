@@ -20,20 +20,20 @@ function Hero() {
 
 
 
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-                    <div class="input-group" id="adv-search">
-                        <input type="text" class="form-control search-input" placeholder="Search for snippets" />
-                        <div class="input-group-btn">
-                            <div class="btn-group" role="group">
-                                <div class="dropdown dropdown-lg">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
-                                    <div class="dropdown-menu dropdown-menu-righ">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+                    <div className="input-group" id="adv-search">
+                        <input type="text" className="form-control search-input" placeholder="Search for snippets" />
+                        <div className="input-group-btn">
+                            <div className="btn-group" role="group">
+                                <div className="dropdown dropdown-lg">
+                                    <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span className="caret"></span></button>
+                                    <div className="dropdown-menu dropdown-menu-righ">
 
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                <button type="button" className="btn btn-primary"><span className="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                             </div>
                         </div>
                     </div>
