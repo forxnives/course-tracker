@@ -4,7 +4,7 @@ import CourseDetailsAside from '../Components/CourseDetailsAside.js'
 import CourseDetailsDescription from '../Components/CourseDetailsDescription.js'
 import CourseDetailsRating from '../Components/CourseDetailsRating.js'
 import ReviewComment from '../Components/ReviewComment.js'
-import AddReview from '../Components/AddReview.js'
+import AddComment from '../Components/AddComment.js'
 import CourseStrip from '../Components/CourseStrip.js'
 
 function CourseDetailsPage() {
@@ -68,7 +68,7 @@ function CourseDetailsPage() {
           
                             <hr/>
 
-                                <AddReview />
+                                <AddComment />
     
 
                         </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function AddReview() {
+function AddComment() {
     return (
         <div class="add-review">
         <h5>Leave a Review</h5>
@@ -44,4 +44,4 @@ function AddReview() {
     )
 }
 
-export default AddReview
+export default AddComment

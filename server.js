@@ -1,15 +1,28 @@
 const express = require('express');
+const bodyParser = require('body-parser')
+
 const coursesRouter = require('./src/courses/coursesRouter');
 
 
 const cors = require('cors');
 
 
+
+
+
 const connectDB = require('./config/db');
 
-const port = process.env.PORT || 8082;
+const port = process.env.PORT || 8082;  
 
 const app = express();
+
+app.use(bodyParser.json())
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+
 
 
 

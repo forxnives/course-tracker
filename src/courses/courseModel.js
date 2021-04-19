@@ -27,6 +27,16 @@ const courseSchema = new Schema({
         required: true
     },
 
+    author: {
+        type: String,
+        required: true
+    },
+
+    site: {
+        name: String,
+        link: String,
+    },
+
     description: {
         type: String,
         required: true
@@ -37,9 +47,9 @@ const courseSchema = new Schema({
         required: true
     },
 
-    thumbnailPath: {
+    image: {
         type: String,
-        required: false  //false for now..swtich to true
+        required: true
     },
 
     timesTaken: {
@@ -59,9 +69,12 @@ const courseSchema = new Schema({
 
     pupilIds: [String],
 
-    departmentId: {
-        type: String,
-        requried: true
+    department: {
+        type:{
+            id: String,
+            name: String
+        },
+        required: true
     },
 
     keywords: [String],

@@ -5,7 +5,7 @@ import SearchFilters from '../Components/SearchFilters.js'
 import CourseListResults from '../Components/CourseListResults.js'
 
 
-function CourseListPage() {
+function CourseListPage({courses}) {
     return (
 
 	<div id="page" class="theia-exception">
@@ -23,7 +23,7 @@ function CourseListPage() {
 		<SearchFilters />
 
         
-		<CourseListResults />
+		<CourseListResults courses={courses}/>
 
 		
 
