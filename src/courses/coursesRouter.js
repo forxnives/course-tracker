@@ -1,30 +1,22 @@
 const express = require('express');
-
 const router = express.Router();
-const { retrieveCourses, addCourse } = require('./coursesController');
-
+const { getCourses, addCourse } = require('./coursesController');
 
 
 router.route('/')
 
 
 .get(async (req, res) => {
-    
   
     try {
   
-      const courses = await retrieveCourses()
-
-      // console.log(courses)
+      const courses = await getCourses()
 
       res.json({ data:  courses });
-
-
     
     } catch (err) {
       res.status(400).json({message: err.message})
     }
-
 
   })
   
@@ -34,14 +26,9 @@ router.route('/')
 
       const { body } = req;
 
-
       const data = await addCourse(body)
 
-
-
       res.json({ data: data });
-
-
 
     } catch(err) {
       console.log(err);

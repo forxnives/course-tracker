@@ -2,13 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser')
 
 const coursesRouter = require('./src/courses/coursesRouter');
-
+const departmentRouter = require('./src/departments/departmentRouter');
 
 const cors = require('cors');
-
-
-
-
 
 const connectDB = require('./config/db');
 
@@ -24,15 +20,7 @@ app.use(bodyParser.urlencoded({
 
 
 
-
-
 connectDB();
-
-
-
-
-
-
 
 
 
@@ -42,6 +30,8 @@ connectDB();
   }))
 
 app.use('/courses', coursesRouter);
+
+app.use('/departments', departmentRouter);
 
 
 

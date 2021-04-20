@@ -3,14 +3,9 @@ import CourseListFilters from './CourseListFilters.js'
 import CourseCard from './CourseCard.js'
 
 
-function CourseListResults({courses}) {
+function CourseListResults({courses, setSelectedCourse} = {courses:[], setSelectedCourse}) {
 
-
-
-
-
-	
-
+	console.log(setSelectedCourse)
 
     return (
 		<div className="container margin_60_35">
@@ -23,7 +18,7 @@ function CourseListResults({courses}) {
 					<div className="row">
 
 						{courses.map((course, i)=> (
-							<CourseCard key={`course_${i}`} course={course}/>
+							<CourseCard setSelectedCourse={setSelectedCourse} index={i} key={`course_${i}`} course={course}/>
 						))}
 
 

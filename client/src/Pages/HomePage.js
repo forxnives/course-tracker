@@ -4,16 +4,21 @@ import Suggestions from '../Components/Suggestions.js'
 import HowItWorks from '../Components/HowItWorks.js'
 import Footer from '../Components/Footer.js'
 
-function HomePage() {
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+function HomePage({departments}) {
     return (
         <div id="page">
-      
-
 
       
         <main className="pattern">
   
-          <Hero />
+          <Hero departments={departments} />
   
           <Suggestions />
   

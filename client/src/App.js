@@ -7,62 +7,69 @@ import UserCoursesPage from './Pages/UserCoursesPage.js'
 import LoginPage from './Pages/LoginPage.js'
 import RegisterPage from './Pages/RegisterPage.js'
 import NewCoursePage from './Pages/NewCoursePage';
-
-import {fetchCourses} from './utils/fetchUtils.js'
-
-
-
+import {fetchGet} from './utils/fetchUtils.js'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 
 function App() {
 
 	const [ courses, setCourses ] = useState([])
+  const [ departments, setDepartments ] = useState([])
 	const [ error, setError ] = useState(null)
+  const [ selectedCourse, setSelectedCourse ] = useState(null)
+
 
 	useEffect(()=>{
         
-
-		fetchCourses().then(courses => setCourses(courses) ).catch(error => setError(error.message)) 
-
-
-
+		fetchGet('courses').then(courses => setCourses(courses) ).catch(err => setError(err)) 
+    fetchGet('departments').then(depts => setDepartments(depts)).catch(err => setError(err))
 
 	},[])
+  
+  useEffect(() => {
+
+
+    console.log(courses[selectedCourse])
 
 
 
-
-
-
-
+  }, [selectedCourse])
 
 
 
   return (
     <div className="App">
 
-
-      <HomePage />
-
-      <CourseListPage courses={courses} />
-
-      <CourseDetailsPage courses={courses} />
-
-      <UserCoursesPage />
-
-      {/* <LoginPage />
-
-      <RegisterPage /> */}
-
-
-      <NewCoursePage />
-
-
-
-
-
-
-
+      <Router>
+        <Switch>
+          <Route path="/login">
+            <LoginPage />
+          </Route>
+          <Route path="/register">
+            <RegisterPage />
+          </Route>
+          <Route path="/list">
+            <CourseListPage setSelectedCourse={setSelectedCourse} courses={courses}/>
+          </Route>
+          <Route path="/details">
+            <CourseDetailsPage index={selectedCourse} courses={courses} />
+          </Route>
+          <Route path="/mycourses">
+            <UserCoursesPage />
+          </Route>
+          <Route path="/admin">
+            <NewCoursePage />
+          </Route>
+          <Route path="/">
+            <HomePage departments={departments} />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import UserCourseStrip from '../Components/UserCourseStrip.js'
 import SearchSection from '../Components/SearchSection'
+import Footer from '../Components/Footer.js'
 
 function UserCourses() {
     return (
@@ -34,7 +35,7 @@ function UserCourses() {
 		</div>
 
 	</main>
-    
+    <Footer />
     </>
     )
 }

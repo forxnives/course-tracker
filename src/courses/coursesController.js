@@ -3,7 +3,7 @@ const {Course}  = require('./courseModel');
 const {Department} = require('../departments/departmentModel')
 
 
-exports.retrieveCourses =  async () => {
+exports.getCourses =  async () => {
 
 
     try {

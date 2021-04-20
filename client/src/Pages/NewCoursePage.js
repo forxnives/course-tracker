@@ -1,4 +1,7 @@
 import React, {useState} from 'react'
+import SearchSection from '../Components/SearchSection'
+import Footer from '../Components/Footer.js'
+import {newCourse} from '../utils/fetchUtils'
 
 function NewCoursePage() {
 
@@ -16,74 +19,38 @@ function NewCoursePage() {
 
 
 
-
-	const newCourse = async (e) => {
-
-        console.log('submitting>>??')
-
-		const response = await fetch(`http://localhost:8082/courses`, {
-			method: 'POST',
-			headers: {
-			  'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
+    function handleSubmit(e) {
+        e.preventDefault()
+        
+        newCourse({
 
 				title: courseTitle,
-
                 author: courseAuthor,
-
                 site: {
                     link:courseSiteLink,
                     name: courseSite
                  },
-
                 image: courseImage,
-
 				topics: ['Javascript', 'React', 'HTML', 'CSS'],
-
-			
 				description: courseDescription,
-			
-
-			
 				department: courseDepartment,
-			
 				keywords: ['javasript', 'web', 'andrei', 'neagoie'],
-			
 				rating: {
-			
 					one: 3,
 					two: 6,
 					three: 7,
 					four: 45,
 					five: 176
-			
 				},
 				
-			}),
+			}).then(response => {
 
-		})
+                if (response.status===200) {
+                    alert('Successfully Submitted')
+                }
 
-		if (response.status===500) {
-
-			throw new Error(response.statusText)
-		}
-
-		if (response.status===200) {
-            alert('Successfully Submitted')
-		}
-
-
-	}
-
-    function handleSubmit(e) {
-        e.preventDefault()
-        newCourse()
-
+            }).catch(err => alert(err))
     }
-
-
-
 
 
 
@@ -130,7 +97,6 @@ function NewCoursePage() {
                     <input type="text" name="keywords_course" id="keywords_course" className="form-control" onChange={(e)=> setCourseKeywords(e.target.value)}/>
                 </div>
 
-
                 <div className="form-group col-md-12">
                     <label>Description</label>
                     <textarea name="description_text" id="description_text" className="form-control" style={{height:'130px'}} onChange={(e)=> setCourseDescription(e.target.value)} ></textarea>
@@ -141,7 +107,6 @@ function NewCoursePage() {
             </div>
         </form>
             
-
     )
 }
 

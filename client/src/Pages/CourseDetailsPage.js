@@ -6,9 +6,12 @@ import CourseDetailsRating from '../Components/CourseDetailsRating.js'
 import ReviewComment from '../Components/ReviewComment.js'
 import AddComment from '../Components/AddComment.js'
 import CourseStrip from '../Components/CourseStrip.js'
+import Footer from '../Components/Footer.js'
 
-function CourseDetailsPage() {
+function CourseDetailsPage({courses, index} = {courses: [], index}) {
     return (
+
+       <> 
         <div id="page" className="theia-exception">
 		
 
@@ -38,7 +41,7 @@ function CourseDetailsPage() {
 
                             {/* <CourseDetailsDescription /> */}
 
-                            <CourseStrip />
+                            <CourseStrip course={courses[index]} />
 
 
                         
@@ -88,6 +91,8 @@ function CourseDetailsPage() {
 
 
         </div>
+        <Footer />
+       </> 
     )
 }
 
