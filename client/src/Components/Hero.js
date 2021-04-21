@@ -45,25 +45,25 @@ function Hero({departments}) {
     <li>
       <a href="grid-listings-filterscol.html">
         <i className="icon-shop"></i>
-        <h3>{departments[0].name}</h3>
+        <h3>{departments[0]?.name}</h3>
       </a>
     </li>
     <li>
       <a href="grid-listings-filterscol.html">
         <i className="icon-lodging"></i>
-        <h3>{departments[1].name}</h3>
+        <h3>{departments[1]?.name}</h3>
       </a>
     </li>
     <li>
       <a href="grid-listings-filterscol.html">
         <i className="icon-restaurant"></i>
-        <h3>{departments[2].name}</h3>
+        <h3>{departments[2]?.name}</h3>
       </a>
     </li>
     <li>
       <a href="grid-listings-filterscol.html">
         <i className="icon-bar"></i>
-        <h3>{departments[3].name}</h3>
+        <h3>{departments[3]?.name}</h3>
       </a>
     </li>
     <li>

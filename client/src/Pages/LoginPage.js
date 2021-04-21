@@ -1,6 +1,46 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-function LoginPage() {
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Redirect,
+	Link
+  } from "react-router-dom";
+
+function LoginPage(props) {
+
+
+	const [ email, setEmail ] = useState('');
+	const [ password, setPassword ] = useState('');
+	const [ error, setError ] = useState('');
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		console.log('wut?')
+	
+		try{
+		  const response = await fetch('http://localhost:8082/users/login', {
+			method: 'POST',
+			headers: {
+			  "Content-Type": 'application/json'
+			},
+			body: JSON.stringify({ email, password})
+		  })
+		  const data = await response.json();
+		  if (!response.ok){
+			throw new Error(data.messate);
+		  }
+		  props.getUser();
+		} catch (err){
+		  setError(err.message);
+		}
+	
+	  }
+
+
+
     return (
 <div id="login_bg">
 	
@@ -11,7 +51,7 @@ function LoginPage() {
 			<figure>
 				<a href="index.html"><img src="img/logo_sticky.svg" width="165" height="35" alt="" class="logo_sticky"/></a>
 			</figure>
-			  <form>
+			  <form onSubmit={(e)=>handleSubmit(e)}>
 				<div class="access_social">
 					<a href="#0" class="social_bt facebook">Login with Facebook</a>
 					<a href="#0" class="social_bt google">Login with Google</a>
@@ -20,12 +60,12 @@ function LoginPage() {
 				<div class="divider"><span>Or</span></div>
 				<div class="form-group">
 					<label>Email</label>
-					<input type="email" class="form-control" name="email" id="email"/>
+					<input onChange={(e)=>setEmail(e.target.value)} type="email" class="form-control" name="email" id="email"/>
 					<i class="icon_mail_alt"></i>
 				</div>
 				<div class="form-group">
 					<label>Password</label>
-					<input type="password" class="form-control" name="password" id="password" value=""/>
+					<input onChange={(e) => setPassword(e.target.value)} type="password" class="form-control" name="password" id="password" defaultValue=""/>
 					<i class="icon_lock_alt"></i>
 				</div>
 				<div class="clearfix add_bottom_30">
@@ -37,8 +77,8 @@ function LoginPage() {
 					</div>
 					<div class="float-right mt-1"><a id="forgot" href="javascript:void(0);">Forgot Password?</a></div>
 				</div>
-				<a href="#0" class="btn_1 rounded full-width">Login Now</a>
-				<div class="text-center add_top_10">New to Sparker? <strong><a href="register.html">Sign up!</a></strong></div>
+				<button type='submit'  class="btn_1 rounded full-width">Login Now</button>
+				<div class="text-center add_top_10">New to Sparker? <strong><Link to="/register">Register!</Link></strong></div>
 			</form>
 			<div class="copy">© 2018 Sparker</div>
 		</aside>

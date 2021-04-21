@@ -5,7 +5,10 @@ import CourseCard from './CourseCard.js'
 
 function CourseListResults({courses, setSelectedCourse} = {courses:[], setSelectedCourse}) {
 
-	console.log(setSelectedCourse)
+	
+
+
+	
 
     return (
 		<div className="container margin_60_35">

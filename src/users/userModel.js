@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-// const argon2 = require('argon2');
+const argon2 = require('argon2');
 
 
 const userCourseSubSchema = new Schema({
@@ -23,15 +23,33 @@ const userCourseSubSchema = new Schema({
 
 
 const userSchema = new Schema({
+    
 
-    Name: {
+    email: {
+        type: String,
+        required: true
+    },
+
+    password: {
+        type: String,
+        required: true
+    },
+
+    
+    firstName: {
 
         type: String,
         requried: true
 
     },
 
-    Email: String,
+    lastName: {
+
+        type: String,
+        requried: true
+
+    },
+
 
     displayPicPath: String,
 
@@ -52,31 +70,31 @@ const userSchema = new Schema({
 
 })
 
-// userSchema.pre('save', async function(next) {
-//     const user = this;
+userSchema.pre('save', async function(next) {
+    const user = this;
     
-//     try {
-//       if (user.isModified('password') || user.isNew) {
-//         // validate password is long enough and has special characters
-//         const hashedPassword = await argon2.hash(user.password);
-//         user.password = hashedPassword;
-//       }
-//       next();
-//     } catch(e) {
+    try {
+      if (user.isModified('password') || user.isNew) {
+        // validate password is long enough and has special characters
+        const hashedPassword = await argon2.hash(user.password);
+        user.password = hashedPassword;
+      }
+      next();
+    } catch(e) {
 
-//       next(e);
-//     }
-//   })
+      next(e);
+    }
+  })
   
-  // comparison function for when user logins
-  // password in this case will be PLAINTEXT, readable password
+//   comparison function for when user logins
+//   password in this case will be PLAINTEXT, readable password
 
 
-//   userSchema.methods.comparePasswords = function(password) {
-//     const user = this;
+  userSchema.methods.comparePasswords = function(password) {
+    const user = this;
 
-//     return argon2.verify(user.password, password);
-//   }
+    return argon2.verify(user.password, password);
+  }
 
 
 
@@ -84,3 +102,4 @@ const userSchema = new Schema({
 
 const User = mongoose.model('User', userSchema);
 module.exports = { userSchema, userCourseSubSchema, User };
+

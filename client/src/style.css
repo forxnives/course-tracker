@@ -2905,7 +2905,7 @@ a.box_feat h3 {
 }
 
 .score strong {
-  background-color: #32a067;
+  /* background-color: #32a067; */
   color: #fff;
   line-height: 1;
   -webkit-border-radius: 5px 5px 5px 0;
@@ -4179,7 +4179,7 @@ section#reviews {
 
 #review_summary {
   text-align: center;
-  background-color: #32a067;
+  /* background-color: #32a067; */
   color: #fff;
   padding: 20px 10px;
   -webkit-border-radius: 3px 3px 3px 0;
@@ -4207,9 +4207,9 @@ section#reviews {
 .reviews-container .progress {
   margin-bottom: 12px;
 }
-.reviews-container .progress-bar {
+/* .reviews-container .progress-bar {
   background-color: #32a067;
-}
+} */
 .reviews-container .review-box {
   position: relative;
   margin-bottom: 25px;

@@ -1,8 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser');
 
 const coursesRouter = require('./src/courses/coursesRouter');
 const departmentRouter = require('./src/departments/departmentRouter');
+const userRouter = require('./src/users/userRouter')
 
 const cors = require('cors');
 
@@ -12,27 +14,47 @@ const port = process.env.PORT || 8082;
 
 const app = express();
 
-app.use(bodyParser.json())
+app.use(cookieParser());
 
-app.use(bodyParser.urlencoded({
+app.use(cors({
+  origin : "http://localhost:3000",
+  credentials: true,
+}))
+
+app.use(express.json())
+
+app.use(express.urlencoded({
   extended: true
 }));
-
-
-
-connectDB();
-
-
-
-  app.use(cors({
-    origin : "http://localhost:3000",
-    credentials: true,
-  }))
 
 app.use('/courses', coursesRouter);
 
 app.use('/departments', departmentRouter);
 
+app.use('/users', userRouter)
 
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+
+
+
+
+
+
+
+
+
+
+
+connectDB().then(() => {
+  app.listen(port, () => console.log(`Server running on port ${port}`));
+})
+.catch((err) => console.log(err));
+
+
+
+
+
+
+
+
+

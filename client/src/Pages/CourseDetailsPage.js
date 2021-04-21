@@ -49,7 +49,7 @@ function CourseDetailsPage({courses, index} = {courses: [], index}) {
                                 
                                 <h2>Reviews</h2>
 
-                                <CourseDetailsRating />
+                                <CourseDetailsRating course={courses[index]} />
     
                                 <div className="reviews-container">
 

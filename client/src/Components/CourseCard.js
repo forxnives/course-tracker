@@ -1,4 +1,5 @@
 import React from 'react'
+import { ratingDisplayHelper } from '../utils/ratingUtils.js'
 import {
     BrowserRouter as Router,
     Switch,
@@ -7,6 +8,11 @@ import {
   } from "react-router-dom";
 
 function CourseCard({course, index, setSelectedCourse}) {
+
+
+
+    const ratingDisplay = ratingDisplayHelper(course.ratingCalc.avgRating)
+
 
 
 
@@ -29,7 +35,10 @@ function CourseCard({course, index, setSelectedCourse}) {
             <ul>
                 <li><span className="loc_open">Now Open</span></li>
                 <li>
-                    <div className="score"><span>Superb<em>350 Reviews</em></span><strong>8.9</strong></div>
+                    <div className="score"><span>{ratingDisplay.adjective}<em>{`${course.ratingCalc.totalRatings} Ratings`}</em></span>
+                        <strong style={{backgroundColor: `${ratingDisplay.color}`}}>{course.ratingCalc.avgRating}</strong>
+                    
+                    </div>
                 </li>
             </ul>
         </div>
