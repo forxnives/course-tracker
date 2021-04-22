@@ -2,7 +2,7 @@ import React from 'react'
 
 function Hero({departments}) {
 
-  console.log(departments)
+
 
     return (
         <>

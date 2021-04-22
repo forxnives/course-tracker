@@ -1,5 +1,6 @@
 
-const {Course}  = require('./courseModel');
+const {Course, Comment}  = require('./courseModel');
+const {User} = require('../users/userModel')
 const {Department} = require('../departments/departmentModel')
 
 
@@ -11,6 +12,38 @@ exports.getCourses =  async () => {
         const courses = await Course.find({})
 
         return courses
+
+
+    } catch (err){
+
+        throw err;
+
+    }
+
+}
+
+exports.getSingleCourse =  async (courseId) => {
+
+
+    try {
+
+        const course = await Course.findById(courseId)
+
+
+
+        for (let i=0; i < course.comments.length; i++) {
+            const user = await User.findById(course.comments[i].userId)
+
+            course.comments[i].userName = user.firstName+ ' ' + user.lastName
+
+            console.log(course.comments[i].userName)
+
+
+
+
+        }
+        console.log(course)
+        return course
 
 
     } catch (err){
@@ -51,3 +84,48 @@ exports.addCourse =  async (course) => {
     }
 
 }
+
+
+exports.addComment =  async (body) => {
+
+
+    try {
+
+        const {userId, courseId, comment} = body
+
+
+        const course = await Course.findById(courseId)
+
+
+        if (!course){
+            throw new Error('Course doesnt exist')
+        }
+
+        const newComment = new Comment({
+
+            userId: userId,
+        
+            comment: {
+                text: comment.text,
+                timeStamp: comment.timeStamp,
+            }
+
+        })
+
+        // const savedComment = await newComment.save();
+
+        course.comments.push(newComment)
+
+        const savedCourse = await course.save()
+
+        return savedCourse
+
+
+    } catch (err){
+
+        throw err;
+
+    }
+
+}
+

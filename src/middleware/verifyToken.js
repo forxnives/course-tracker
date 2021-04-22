@@ -1,18 +1,22 @@
 const { verifyToken } = require('../tokens/tokenService');
 
 exports.verifyToken = async (req, res, next) => {
-  const { cookies } = req;
+  const { token } = req.body;
+  console.log(req.body)
 
-//   console.log(req)
+
   try {
-    if (!cookies || !cookies.token) {
-      res.status(403).json({ message: 'authorization 🐛 required'});
+
+    if (!token) {
+      res.status(403).json({ message: 'authorization required'});
       return;
     }
-    const token = cookies.token;
+    // const token = cookies.token;
     // {id: someuserid }
     const userToken = await verifyToken(token);
     req.user = userToken;
+
+    console.log('success?')
     next();
   } catch(e) {
     res.status(403).json({message: 'invalid or expired token'});

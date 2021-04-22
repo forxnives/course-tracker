@@ -9,10 +9,16 @@ const commentSubSchema = new Schema({
         required: true
     },
 
+    userName: String,
+
+
+
     comment: {
         text: String,
         timeStamp: String,
     }
+
+
 
 })
 
@@ -98,5 +104,7 @@ const courseSchema = new Schema({
 
 const Course = mongoose.model('Course', courseSchema);
 
+const Comment = mongoose.model('Comment', commentSubSchema);
 
-module.exports = { courseSchema, commentSubSchema, Course };
+
+module.exports = { courseSchema, commentSubSchema, Course, Comment };

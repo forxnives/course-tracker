@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import SearchSection from '../Components/SearchSection.js'
 import CourseDetailsAside from '../Components/CourseDetailsAside.js'
 import CourseDetailsDescription from '../Components/CourseDetailsDescription.js'
@@ -8,7 +8,37 @@ import AddComment from '../Components/AddComment.js'
 import CourseStrip from '../Components/CourseStrip.js'
 import Footer from '../Components/Footer.js'
 
-function CourseDetailsPage({courses, index} = {courses: [], index}) {
+import {fetchGet} from '../utils/fetchUtils.js'
+import {ratingCalc} from '../utils/ratingUtils.js'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams,
+    useRouteMatch
+  } from "react-router-dom";
+
+
+function CourseDetailsPage({courses=[], user} ) {
+
+    let {params} = useRouteMatch();
+
+    let {courseId} = params;
+
+    const [ course, setCourse ] = useState(null);
+    const [ forceUpdate, setForceUpdate ] = useState(false)
+
+
+    
+    useEffect(() => {
+        fetchGet(`courses/single/${courseId}`).then(course => setCourse({...course, ratingCalc:ratingCalc(course.rating)}) ).catch(err => console.log(err)) 
+    },[forceUpdate])
+
+    console.log(course)
+
+
+
     return (
 
        <> 
@@ -34,14 +64,16 @@ function CourseDetailsPage({courses, index} = {courses: [], index}) {
             </nav>
 
 
-    
-            <div className="container margin_60_35">
+            {
+                course ? (
+
+                    <div className="container margin_60_35">
                     <div className="row">
                         <div className="col-lg-8">
 
-                            {/* <CourseDetailsDescription /> */}
 
-                            <CourseStrip course={courses[index]} />
+
+                            <CourseStrip course={course} />
 
 
                         
@@ -49,19 +81,16 @@ function CourseDetailsPage({courses, index} = {courses: [], index}) {
                                 
                                 <h2>Reviews</h2>
 
-                                <CourseDetailsRating course={courses[index]} />
+                                <CourseDetailsRating course={course} />
     
                                 <div className="reviews-container">
 
-                                    <ReviewComment />
 
-                                    <ReviewComment />
+                                {
+                                    course.comments.map(comment => (<ReviewComment comment={comment} />))
+                                }
 
-                                    <ReviewComment />
 
-                                    <ReviewComment />
-
-                                    <ReviewComment />
     
 
      
@@ -71,7 +100,7 @@ function CourseDetailsPage({courses, index} = {courses: [], index}) {
           
                             <hr/>
 
-                                <AddComment />
+                                <AddComment setForceUpdate={setForceUpdate} forceUpdate={forceUpdate} courseId={courseId} user={user} />
     
 
                         </div>
@@ -83,6 +112,13 @@ function CourseDetailsPage({courses, index} = {courses: [], index}) {
                     </div>
 
             </div>
+
+                ) : null
+            }
+
+
+    
+
     
             
         </main>

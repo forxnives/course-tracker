@@ -62,6 +62,8 @@ router.route('/login').post(async (req, res) => {
 
   const { email, password } = req.body;
 
+  console.log(email)
+
   if (!email || email === ' ') {
     res.status(400).json({ message: 'email must be provided'});
     return;
@@ -91,39 +93,32 @@ router.route('/login').post(async (req, res) => {
 
 
 
+    // res.header('auth-token', token)
+
+    // res.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true, sameSite: false })
+
+
+    res.json({accessToken: token})
+
 
     // res.cookie('token2', token);
 
 
 
-    // Our token expires after one day
-    const oneDayToSeconds = 24 * 60 * 60;
-    res.cookie('userId', user._id,  
-    { maxAge: oneDayToSeconds,
-    // You can't access these tokens in the client's javascript
-    httpOnly: true,
-    // Forces to use https in production
-    // secure: process.env.NODE_ENV === 'production'? true: false
-    secure: false
-    });
-
-
-
-
-
-
-
-    console.log(res)
-
-    res.status(200).send({});
+    // res.send({});
 
   } catch(e) {
     console.log(e);
   }
 })
 
-router.use(verifyToken).route('/me').get(async (req, res) => {
+router.use(verifyToken).route('/me').post(async (req, res) => {
+
+  // router.route('/me').post(async (req, res) => {
+
   try {
+
+    // console.log(req.body.token)
     //  const { cookies } = req;
     // if(!cookies || !cookies.token) {
     //     res.status(403).json({ message: 'authorization required '});

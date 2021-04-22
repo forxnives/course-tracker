@@ -21,21 +21,20 @@ app.use(cors({
   credentials: true,
 }))
 
-app.use(express.json())
+app.use(bodyParser.json())
 
-app.use(express.urlencoded({
+app.use(bodyParser.urlencoded({
   extended: true
 }));
+
+
+
 
 app.use('/courses', coursesRouter);
 
 app.use('/departments', departmentRouter);
 
 app.use('/users', userRouter)
-
-
-
-
 
 
 

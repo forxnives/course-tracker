@@ -3,7 +3,7 @@ import { ratingDisplayHelper, ratingBarsHelper }  from '../utils/ratingUtils.js'
 
 function CourseDetailsRating({course}) {
 
-    const ratingDisplay = ratingDisplayHelper(course?.ratingCalc.avgRating)
+    const ratingDisplay = ratingDisplayHelper(course?.ratingCalc?.avgRating)
     const ratingBars =  ratingBarsHelper(course?.rating)
 
 
@@ -13,9 +13,9 @@ function CourseDetailsRating({course}) {
         <div className="row">
             <div className="col-lg-3">
                 <div style={{backgroundColor: ratingDisplay.color}} id="review_summary">
-                    <strong>{course?.ratingCalc.avgRating}</strong>
+                    <strong>{course?.ratingCalc?.avgRating}</strong>
                     <em>{ratingDisplay.adjective}</em>
-                    <small>{`Based on ${course?.ratingCalc.totalRatings} ratings`}</small>
+                    <small>{`Based on ${course?.ratingCalc?.totalRatings} ratings`}</small>
                 </div>
             </div>
             <div className="col-lg-9">

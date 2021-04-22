@@ -43,3 +43,20 @@ export async function newCourse (course) {
 
 }
 
+export async function fetchPost (route, body) {
+    const response = await fetch(`http://localhost:8082/${route}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
+
+    if (response.status===500) {
+        throw new Error(response.statusText)
+    }
+
+    return response
+}
+
+

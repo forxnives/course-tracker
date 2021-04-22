@@ -18,7 +18,8 @@ function LoginPage(props) {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		console.log('wut?')
+
+
 	
 		try{
 		  const response = await fetch('http://localhost:8082/users/login', {
@@ -29,10 +30,15 @@ function LoginPage(props) {
 			body: JSON.stringify({ email, password})
 		  })
 		  const data = await response.json();
+
 		  if (!response.ok){
-			throw new Error(data.messate);
+			throw new Error(data.message);
 		  }
-		  props.getUser();
+		  console.log(data)
+		  props.setAccessToken(data.accessToken)
+		//   props.getUser();
+
+
 		} catch (err){
 		  setError(err.message);
 		}

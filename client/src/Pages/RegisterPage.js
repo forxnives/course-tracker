@@ -25,7 +25,7 @@ function RegisterPage(props) {
 		const body = {
 		  email, password, firstName, lastName, departmentId:dpWebDev}
 
-		  console.log(body)
+
 	  
 		const response = await fetch ('http://localhost:8082/users', {
 		  method: 'POST',
@@ -40,23 +40,23 @@ function RegisterPage(props) {
 		  throw new Error (data.message);
 		}
   
-		// const loginResponse = await fetch('http://localhost:8082/users/login', {
-		//   method: 'POST',
-		//   headers: {
-		// 	'Content-Type': 'application/json'
-		//   },
-		//   body: JSON.stringify({ email, password }),
-		// })
+		const loginResponse = await fetch('http://localhost:8082/users/login', {
+		  method: 'POST',
+		  headers: {
+			'Content-Type': 'application/json'
+		  },
+		  body: JSON.stringify({ email, password }),
+		})
   
   
-		// const loginJson = await loginResponse.json()
-		// if (!loginResponse.ok) {
-		//   throw new Error(loginJson.message)
-		// }
+		const loginJson = await loginResponse.json()
+		if (!loginResponse.ok) {
+		  throw new Error(loginJson.message)
+		}
   
-		// props.getUser();
+		props.setAccessToken(loginJson.accessToken);
 
-		// console.log(data)
+
   
 	  } catch(err){
 		console.log(err);

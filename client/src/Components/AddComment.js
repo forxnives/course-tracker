@@ -1,19 +1,60 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {fetchPost} from '../utils/fetchUtils'
 
-function AddComment() {
+
+function AddComment({user, courseId, setForceUpdate, forceUpdate}) {
+
+
+
+    const [commentText, setCommentText] = useState('')
+
+    function handleSubmit(e) {
+        e.preventDefault()
+
+
+        fetchPost('courses/comment', {
+            userId: user.id,
+
+            courseId: courseId,
+        
+            comment: {
+                text: commentText,
+                timeStamp: new Date(),
+            }
+
+            
+        }).then(response => {
+
+            if (response.status===200) {
+                // alert('Successfully Submitted')
+                setCommentText('')
+                setForceUpdate(!forceUpdate)
+
+            }
+
+        }).catch(err => alert(err))
+
+
+
+
+
+
+    }
+
+
     return (
         <div className="add-review">
         <h5>Leave a Review</h5>
-        <form>
+        <form onSubmit={(e)=> handleSubmit(e)}>
             <div className="row">
-                <div className="form-group col-md-6">
+                {/* <div className="form-group col-md-6">
                     <label>Name and Lastname *</label>
                     <input type="text" name="name_review" id="name_review" placeholder="" className="form-control"/>
                 </div>
                 <div className="form-group col-md-6">
                     <label>Email *</label>
                     <input type="email" name="email_review" id="email_review" className="form-control"/>
-                </div>
+                </div> */}
                 {/* <div className="form-group col-md-6">
                     <label>Rating </label>
                     <div className="custom-select-form">
@@ -33,7 +74,7 @@ function AddComment() {
                 </div> */}
                 <div className="form-group col-md-12">
                     <label>Your Review</label>
-                    <textarea name="review_text" id="review_text" className="form-control" style={{height:'130px'}}></textarea>
+                    <textarea onChange={(e) => setCommentText(e.target.value)} name="review_text" id="review_text" value={commentText} className="form-control" style={{height:'130px'}}></textarea>
                 </div>
                 <div className="form-group col-md-12 add_top_20 add_bottom_30">
                     <input type="submit" value="Submit" className="btn_1" id="submit-comment"/>

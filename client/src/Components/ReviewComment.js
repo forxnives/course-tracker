@@ -1,6 +1,8 @@
 import React from 'react'
 
-function ReviewComment() {
+function ReviewComment({comment}) {
+
+    console.log(comment.userName)
     return (
         <div className="review-box clearfix">
         <figure className="rev-thumb"><img src="img/avatar1.jpg" alt=""/>
@@ -10,11 +12,11 @@ function ReviewComment() {
                 <i className="icon_star voted"></i><i className="icon_star voted"></i><i className="icon_star voted"></i><i className="icon_star voted"></i><i className="icon_star"></i>
             </div>
             <div className="rev-info">
-                Admin – April 03, 2016:
+                {`${comment.userName} – ${comment.comment.timeStamp}:`}
             </div>
             <div className="rev-text">
                 <p>
-                    Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit. Cum sociis natoque penatibus et magnis dis
+                    {comment.comment.text}
                 </p>
             </div>
         </div>
