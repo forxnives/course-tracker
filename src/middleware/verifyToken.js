@@ -2,7 +2,7 @@ const { verifyToken } = require('../tokens/tokenService');
 
 exports.verifyToken = async (req, res, next) => {
   const { token } = req.body;
-  console.log(req.body)
+  
 
 
   try {

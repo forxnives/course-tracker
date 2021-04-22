@@ -2,10 +2,14 @@ import React, {useState} from 'react'
 import SearchSection from '../Components/SearchSection'
 import Footer from '../Components/Footer.js'
 import {newCourse} from '../utils/fetchUtils'
+import {arrayConvert} from '../utils/generalUtils.js'
 
-function NewCoursePage() {
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
-    const dpWebDev = '607cb63644e9b5b23b9d1dd8'
+
+function NewCoursePage({departments}) {
+
 
     const [courseTitle, setCourseTitle ] = useState('')
     const [courseAuthor, setCourseAuthor ] = useState('') 
@@ -13,11 +17,16 @@ function NewCoursePage() {
     const [courseSiteLink, setCourseSiteLink ] = useState('') 
     const [courseImage, setCourseImage ] = useState('') 
     const [courseTopics, setCourseTopics ] = useState([]) 
-    const [courseDepartment, setCourseDepartment ] = useState(dpWebDev) 
+    const [courseDepartment, setCourseDepartment ] = useState('') 
     const [courseKeywords, setCourseKeywords ] = useState('') 
     const [courseDescription, setCourseDescription ] = useState('') 
 
-
+    useState(() => {
+        setCourseDepartment(departments[0]?._id)
+    }, [departments]) 
+    
+ 
+    console.log(courseDepartment)
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -31,16 +40,16 @@ function NewCoursePage() {
                     name: courseSite
                  },
                 image: courseImage,
-				topics: ['Javascript', 'React', 'HTML', 'CSS'],
+				topics: arrayConvert(courseTopics),
 				description: courseDescription,
 				department: courseDepartment,
-				keywords: ['javasript', 'web', 'andrei', 'neagoie'],
+				keywords: arrayConvert(courseKeywords),
 				rating: {
-					one: 3,
-					two: 6,
-					three: 7,
-					four: 45,
-					five: 176
+					one: 0,
+					two: 0,
+					three: 0,
+					four: 0,
+					five: 0
 				},
 				
 			}).then(response => {
@@ -52,6 +61,11 @@ function NewCoursePage() {
             }).catch(err => alert(err))
     }
 
+
+    const dropdownOptions = departments.map(department => ({value: department._id, label: department.name}))
+      
+      
+      const defaultOption = dropdownOptions[0];
 
 
     return (
@@ -88,9 +102,10 @@ function NewCoursePage() {
                 </div>
 
                 <div className="form-group col-md-6">
-                    <label>DepartmentId</label>
-                    <input type="text" name="department_course" id="department_course" value={dpWebDev} className="form-control" onChange={(e)=> setCourseDepartment(e.target.value)}/>
+                    <label>Department</label>
+                    <Dropdown  options={dropdownOptions} onChange={(e) => setCourseDepartment(e.value)} value={defaultOption} placeholder="Select an option" />;
                 </div>
+
 
                 <div className="form-group col-md-6">
                     <label>Keywords</label>

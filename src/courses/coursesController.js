@@ -36,13 +36,8 @@ exports.getSingleCourse =  async (courseId) => {
 
             course.comments[i].userName = user.firstName+ ' ' + user.lastName
 
-            console.log(course.comments[i].userName)
-
-
-
-
         }
-        console.log(course)
+
         return course
 
 
@@ -72,7 +67,11 @@ exports.addCourse =  async (course) => {
             id: department._id
         }})
 
+
+        department.courseIds.push(newCourse._id)
+
         const savedCourse = await newCourse.save();
+        const savedDepartment = await department.save();
 
         return savedCourse
 

@@ -133,7 +133,7 @@ function App() {
             render={props => {
               if (user) {
                 console.log('yor')
-                return <Redirect to="/app" />;
+                return <Redirect to="/app/home" />;
               }
 
               return <LoginPage getUser={getUser} setAccessToken={setAccessToken} {...props} />;
@@ -147,7 +147,7 @@ function App() {
             path="/register"
             render={props => {
               if (user) {
-                return <Redirect to="/app" />;
+                return <Redirect to="/app/home" />;
               }
               return <RegisterPage setAccessToken={setAccessToken} updateUser={setUser} {...props} />;
             }}
@@ -241,7 +241,7 @@ function App() {
             render={props => {
               if (user) {
                 
-                return <NewCoursePage />
+                return <NewCoursePage departments={departments} />
               }
 
               return <LoginPage getUser={getUser} setAccessToken={setAccessToken} {...props} />;

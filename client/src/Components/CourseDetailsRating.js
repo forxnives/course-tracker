@@ -13,7 +13,7 @@ function CourseDetailsRating({course}) {
         <div className="row">
             <div className="col-lg-3">
                 <div style={{backgroundColor: ratingDisplay.color}} id="review_summary">
-                    <strong>{course?.ratingCalc?.avgRating}</strong>
+                    <strong>{course?.ratingCalc?.avgRating ? (course?.ratingCalc?.avgRating): 'Unrated'}</strong>
                     <em>{ratingDisplay.adjective}</em>
                     <small>{`Based on ${course?.ratingCalc?.totalRatings} ratings`}</small>
                 </div>

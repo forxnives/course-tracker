@@ -21,7 +21,7 @@ function CourseStrip({course}) {
                     <a className="wish_bt"></a>
                     <h3><a>{course?.title}</a></h3>
                     <small>{course?.author}</small>
-                    <p>Dicam diceret ut ius, no epicuri dissentiet philosophia vix. Id usu zril tacimates neglegentur. Eam id legimus torquatos cotidieque, usu decore percipitur definitiones ex, nihil utinam recusabo mel no.</p>
+                    <p>{course?.description}</p>
 
                 </div>
                 <ul>
