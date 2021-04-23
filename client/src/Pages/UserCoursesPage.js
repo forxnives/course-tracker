@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import UserCourseStrip from '../Components/UserCourseStrip.js'
 import SearchSection from '../Components/SearchSection'
 import Footer from '../Components/Footer.js'
-import {fetchPost} from '../utils/fetchUtils.js'
+import {fetchPut} from '../utils/fetchUtils.js'
 
 function UserCourses({user}) {
 
@@ -10,11 +10,15 @@ function UserCourses({user}) {
 
 
 	useEffect(() => {
-		console.log(user)
-		if (user){
-			fetchPost('users/courses', {userId:user.userId}).then(response => { console.log(response)}).catch(err => alert(err))
+
+
+		const body = {
+			userId: user.id
 		}
 
+		if (user){
+			fetchPut('courses/usercourses', body ).then(response => { setUserCourses(response.data)}).catch(err => alert(err))
+		}
 
 
 	},[user])
@@ -37,14 +41,13 @@ function UserCourses({user}) {
 	<main>
 		<div className="container margin_60_35">
 			<div className="box_booking">
+
+
+			{userCourses.map((course, i)=> (            
+				<UserCourseStrip course={course} key={`course_${i}`} />
+			) )}
 				
-            <UserCourseStrip />
 
-			<UserCourseStrip />
-
-			<UserCourseStrip />
-
-			<UserCourseStrip />
 
 
 

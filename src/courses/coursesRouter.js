@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getCourses, addCourse, addComment, getSingleCourse, enrolUser } = require('./coursesController');
+const { getCourses, addCourse, addComment, getSingleCourse, enrolUser, getUserCourses } = require('./coursesController');
 
 
 router.route('/')
@@ -55,7 +55,6 @@ router.route('/')
 
   router.route('/single/:courseId').get(async (req, res) => {
 
-    console.log(req.params.courseId)
     try {
       const { courseId } = req.params;
 
@@ -86,6 +85,27 @@ router.route('/')
 
 
   })
+
+
+  
+router.route('/usercourses').put(async (req, res) => {
+
+  
+  try {
+
+    const {userId} = req.body
+
+
+    const courses = await getUserCourses(userId)
+
+    res.json({ data:  courses});
+  
+  } catch (err) {
+
+    res.status(400).json({message: err.message})
+  }
+
+})
 
 
 

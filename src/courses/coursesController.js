@@ -164,3 +164,32 @@ exports.enrolUser =  async (body) => {
 
 }
 
+
+exports.getUserCourses =  async (userId) => {
+
+
+    try {
+
+        const user = await User.findById(userId)
+
+        const courses = []
+
+
+        for (let i=0;i<user.courses.length; i++){
+
+
+            let course = await Course.findById(user.courses[i].courseId)
+
+            courses.push(course)
+
+        }
+
+        return courses
+
+    } catch (err){
+
+        throw err;
+
+    }
+
+}

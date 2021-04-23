@@ -136,25 +136,6 @@ router.use(verifyToken).route('/me').post(async (req, res) => {
 })
 
 
-router.route('/courses').post(async (req, res) => {
-
-  console.log('jesus')
-  
-  try {
-
-    console.log(req.body)
-
-
-    // const courses = await getCourses()
-
-    res.json({ data:  'something at least' });
-  
-  } catch (err) {
-
-    res.status(400).json({message: err.message})
-  }
-
-})
 
 
 module.exports = router;

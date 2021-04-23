@@ -6286,7 +6286,7 @@ ul.list_3 li:before {
 }
 
 .strip_booking h3.hotel_booking:before {
-  content: "\ed72";
+  /* content: "\ed72"; */
 }
 
 .strip_booking h3.restaurant_booking:before {
