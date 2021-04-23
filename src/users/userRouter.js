@@ -127,13 +127,16 @@ router.use(verifyToken).route('/me').post(async (req, res) => {
     // const token = cookies.token;
     // const userToken = await verifyToken(token);
     // const user = await findUserById(userToken.id);
-    console.log('wtf')
+    
     const user = await findUserById(req.user.id);
     res.json({ data: user });
   } catch(e) {
 
   }
 })
+
+
+
 
 
 

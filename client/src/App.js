@@ -109,9 +109,6 @@ function App() {
 
 
 
-
-
-
   function handleLogout() {
     setAccessToken(null)
     setUser(undefined)
@@ -183,7 +180,7 @@ function App() {
             render={props => {
               if (user) {
 
-                return<HomePage  departments={departments} />
+                return<HomePage courses={courses}  departments={departments} />
               }
 
               return <LoginPage getUser={getUser} setAccessToken={setAccessToken} {...props} />;

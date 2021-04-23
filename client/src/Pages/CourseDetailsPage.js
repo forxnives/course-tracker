@@ -35,7 +35,7 @@ function CourseDetailsPage({courses=[], user} ) {
         fetchGet(`courses/single/${courseId}`).then(course => setCourse({...course, ratingCalc:ratingCalc(course.rating)}) ).catch(err => console.log(err)) 
     },[forceUpdate])
 
-    console.log(course)
+
 
 
 

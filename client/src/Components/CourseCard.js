@@ -11,9 +11,6 @@ import {
 
 function CourseCard({course, index, setSelectedCourse}) {
 
-    console.log(course._id)
-
-
 
     const ratingDisplay = ratingDisplayHelper(course.ratingCalc.avgRating)
 

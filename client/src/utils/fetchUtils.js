@@ -56,7 +56,9 @@ export async function fetchPost (route, body) {
         throw new Error(response.statusText)
     }
 
-    return response
+    const data = await response.json()
+
+    return data
 }
 
 export async function fetchPut (route, body) {

@@ -1,11 +1,11 @@
 import React from 'react'
 
-function SuggestCat() {
+function SuggestCat({cat}) {
     return (
         <>
         <div className="main_title_3">
         <span></span>
-        <h2>Famous Shops</h2>
+        <h2>{cat}</h2>
         <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
         <a href="grid-listings-filterscol.html">See all</a>
       </div>

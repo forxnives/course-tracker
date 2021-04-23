@@ -11,7 +11,10 @@ import {
   Link
 } from "react-router-dom";
 
-function HomePage({departments}) {
+function HomePage({departments, courses}) {
+
+
+
     return (
         <div id="page">
 
@@ -20,7 +23,7 @@ function HomePage({departments}) {
   
           <Hero departments={departments} />
   
-          <Suggestions />
+          <Suggestions courses={courses} />
   
           <HowItWorks />
   

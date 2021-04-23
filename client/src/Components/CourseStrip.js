@@ -26,11 +26,8 @@ function CourseStrip({course, user}) {
 
         fetchPost('courses/enrol', body).then(response => {
 
-            if (response.status===200) {
-                // alert('Successfully Submitted')
-                history.push('/app/mycourses')
+            history.push('/app/mycourses')
 
-            }
 
         }).catch(err => alert(err))
 

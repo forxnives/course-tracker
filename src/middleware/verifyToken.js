@@ -16,7 +16,6 @@ exports.verifyToken = async (req, res, next) => {
     const userToken = await verifyToken(token);
     req.user = userToken;
 
-    console.log('success?')
     next();
   } catch(e) {
     res.status(403).json({message: 'invalid or expired token'});

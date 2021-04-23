@@ -1,16 +1,24 @@
 import React from 'react'
 import SuggestCat from './SuggestCat'
 
-function Suggestions() {
+function Suggestions({courses}) {
+
+
+    // console.log(courses)
+
+
+
+
+
     return (
         
         <div className="container margin_60_35">
 
-            <SuggestCat />
+            <SuggestCat cat='Reccomended for you' />
 
-            <SuggestCat />
+            <SuggestCat cat='Popular' />
 
-            <SuggestCat />
+            <SuggestCat cat='Trending' />
        
 
         </div>

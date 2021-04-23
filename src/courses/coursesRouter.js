@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getCourses, addCourse, addComment, getSingleCourse, enrolUser, getUserCourses } = require('./coursesController');
+const { getCourses, addCourse, addComment, getSingleCourse, enrolUser, getUserCourses, startUserCourse, finishUserCourse, removeUserCourse, rateUserCourse } = require('./coursesController');
 
 
 router.route('/')
@@ -105,6 +105,76 @@ router.route('/usercourses').put(async (req, res) => {
     res.status(400).json({message: err.message})
   }
 
+})
+
+
+router.route('/startcourse').post(async (req, res) => {
+
+
+  try {
+
+    const {userId, courseId} = req.body
+
+    const user = await startUserCourse(userId, courseId)
+
+    res.json({ data: user });
+
+  } catch(e) {
+
+  }
+})
+
+router.route('/finishcourse').post(async (req, res) => {
+
+
+  try {
+
+    const {userId, courseId} = req.body
+
+    const user = await finishUserCourse(userId, courseId)
+
+    res.json({ data: user });
+
+  } catch(e) {
+
+  }
+})
+
+router.route('/ratecourse').post(async (req, res) => {
+
+
+  try {
+
+    const {userId, courseId, rating} = req.body
+
+
+
+
+    const user = await rateUserCourse(userId, courseId, rating)
+
+    res.json({ data: user });
+
+  } catch(e) {
+
+  }
+})
+
+
+router.route('/removecourse').post(async (req, res) => {
+
+
+  try {
+
+    const {userId, courseId} = req.body
+
+
+    const user = await removeUserCourse(userId, courseId)
+
+    res.json({ data: user });
+
+  } catch(e) {
+
+  }
 })
 
 

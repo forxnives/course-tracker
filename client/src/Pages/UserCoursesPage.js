@@ -7,6 +7,7 @@ import {fetchPut} from '../utils/fetchUtils.js'
 function UserCourses({user}) {
 
 	const [userCourses, setUserCourses] = useState([])
+	
 
 
 	useEffect(() => {
@@ -24,7 +25,6 @@ function UserCourses({user}) {
 	},[user])
 
 
-	console.log(userCourses)
 
 
     return (
@@ -44,13 +44,9 @@ function UserCourses({user}) {
 
 
 			{userCourses.map((course, i)=> (            
-				<UserCourseStrip course={course} key={`course_${i}`} />
+				<UserCourseStrip user={user} course={course} key={`course_${i}`} />
 			) )}
 				
-
-
-
-
 			</div>
 
 			
