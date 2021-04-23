@@ -11,22 +11,14 @@ const commentSubSchema = new Schema({
 
     userName: String,
 
-
-
     comment: {
         text: String,
         timeStamp: String,
     }
-
-
-
 })
 
 
-
 const courseSchema = new Schema({
-
-    // invoiceId: String,
 
     title: {
         type: String,
