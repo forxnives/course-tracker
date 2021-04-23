@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getCourses, addCourse, addComment, getSingleCourse } = require('./coursesController');
+const { getCourses, addCourse, addComment, getSingleCourse, enrolUser } = require('./coursesController');
 
 
 router.route('/')
@@ -69,5 +69,26 @@ router.route('/')
 
 
   })
+
+
+  router.route('/enrol').post(async (req, res) => {
+
+    try {
+      const { body } = req;
+
+      const data = await enrolUser(body)
+
+      res.json({data: data})
+    } catch(err) {
+      console.log(err);
+      res.status(500).json({ message: 'internal server error' });
+    }
+
+
+  })
+
+
+
+  
 
   module.exports = router;

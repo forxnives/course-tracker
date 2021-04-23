@@ -1,5 +1,7 @@
 import React from 'react'
 import { ratingDisplayHelper } from '../utils/ratingUtils.js'
+import Button from 'react-bootstrap/Button';
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -22,7 +24,8 @@ function CourseCard({course, index, setSelectedCourse}) {
         <div onClick={() => setSelectedCourse(index)} className="col-md-6">
         <div className="strip grid">
             <figure>
-                <Link to={`/app/details/${course._id}`} className="wish_bt"></Link>
+                <Link className="wish_bt">Add to my courses</Link>
+                
                 <Link to={`/app/details/${course._id}`}><img src={course.image} className="img-fluid" alt=""/>
                     <div className="read_more"><span>Read more</span></div>
                 </Link>

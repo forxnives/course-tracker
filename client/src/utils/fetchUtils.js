@@ -59,6 +59,22 @@ export async function fetchPost (route, body) {
     return response
 }
 
+export async function fetchPut (route, body) {
+    const response = await fetch(`http://localhost:8082/${route}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
+
+    if (response.status===500) {
+        throw new Error(response.statusText)
+    }
+
+    return response
+}
+
 
 
 

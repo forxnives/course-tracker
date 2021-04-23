@@ -1,6 +1,6 @@
 
 const {Course, Comment}  = require('./courseModel');
-const {User} = require('../users/userModel')
+const {User, UserCourse} = require('../users/userModel')
 const {Department} = require('../departments/departmentModel')
 
 
@@ -119,6 +119,42 @@ exports.addComment =  async (body) => {
 
         return savedCourse
 
+
+    } catch (err){
+
+        throw err;
+
+    }
+
+}
+
+
+exports.enrolUser =  async (body) => {
+
+
+    try {
+
+        const {courseId, userId} =  body
+
+        const user = await User.findById(userId)
+
+        console.log(user.courses)
+
+        for (let i=0; i<user.courses.length; i++){
+            if (courseId===user.courses.courseId){
+                return user
+            }
+        }
+
+        const newUserCourse = await new UserCourse({
+            courseId: courseId,
+        })
+
+        user.courses.push(newUserCourse)
+
+        const savedUser = await user.save()
+
+        return savedUser
 
     } catch (err){
 

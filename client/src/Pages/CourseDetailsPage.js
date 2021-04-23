@@ -73,7 +73,7 @@ function CourseDetailsPage({courses=[], user} ) {
 
 
 
-                            <CourseStrip course={course} />
+                            <CourseStrip user={user} course={course} />
 
 
                         

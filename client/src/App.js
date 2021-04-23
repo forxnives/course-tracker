@@ -119,7 +119,7 @@ function App() {
 
   }
 
-  console.log(user)
+
 
   return (
     <div className="App">
@@ -225,7 +225,7 @@ function App() {
             render={props => {
               if (user) {
                 
-                return <UserCoursesPage />
+                return <UserCoursesPage user={user} />
               }
 
               return <LoginPage getUser={getUser} setAccessToken={setAccessToken} {...props} />;

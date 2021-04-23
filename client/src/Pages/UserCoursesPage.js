@@ -1,9 +1,28 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import UserCourseStrip from '../Components/UserCourseStrip.js'
 import SearchSection from '../Components/SearchSection'
 import Footer from '../Components/Footer.js'
+import {fetchPost} from '../utils/fetchUtils.js'
 
-function UserCourses() {
+function UserCourses({user}) {
+
+	const [userCourses, setUserCourses] = useState([])
+
+
+	useEffect(() => {
+		console.log(user)
+		if (user){
+			fetchPost('users/courses', {userId:user.userId}).then(response => { console.log(response)}).catch(err => alert(err))
+		}
+
+
+
+	},[user])
+
+
+	console.log(userCourses)
+
+
     return (
         <>
 		<SearchSection/>

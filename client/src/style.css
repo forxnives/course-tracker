@@ -2964,7 +2964,7 @@ a.box_feat h3 {
 }
 .strip a.wish_bt:after {
   font-family: 'ElegantIcons';
-  content: "\e012";
+  /* content: "\e012"; */
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
@@ -2972,14 +2972,14 @@ a.box_feat h3 {
   transition: all 0.5s ease;
 }
 .strip a.wish_bt.liked:after {
-  content: "\e078";
+  /* content: "\e078"; */
   color: #ffc107;
 }
 .strip a.wish_bt:hover.liked:after {
   color: #ffc107;
 }
 .strip a.wish_bt:hover:after {
-  content: "\e078";
+  /* content: "\e078"; */
   color: #fff;
 }
 .strip figure {

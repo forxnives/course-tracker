@@ -101,5 +101,6 @@ userSchema.pre('save', async function(next) {
 
 
 const User = mongoose.model('User', userSchema);
-module.exports = { userSchema, userCourseSubSchema, User };
+const UserCourse = mongoose.model('UserCourse', userCourseSubSchema);
+module.exports = { userSchema, userCourseSubSchema, User, UserCourse };
 
