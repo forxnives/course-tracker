@@ -8,6 +8,8 @@ function CourseDetailsRating({course}) {
 
 
 
+
+
     return (
         <div className="reviews-container add_bottom_30">
         <div className="row">

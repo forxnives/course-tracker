@@ -24,7 +24,7 @@ function UserCourses({user}) {
 
 	},[user])
 
-
+	console.log(userCourses)
 
 
     return (

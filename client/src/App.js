@@ -24,60 +24,65 @@ import {
 
 function App() {
 
-
-
-
+  
+  
   const [ accessToken, setAccessToken ] = useLocalStorageState('accessToken', window.localStorage.getItem('accessToken'))
-
+  
   const [user, setUser] = useState(undefined);
   const [ fetchedCourses, setFetchedCourses ] = useState([])
   const [ courses, setCourses ] = useState([])
   const [ departments, setDepartments ] = useState([])
   const [ error, setError ] = useState(null)
   const [ selectedCourse, setSelectedCourse ] = useState(null)
-
+  
   useEffect(()=>{
-        
-		    fetchGet('courses').then(courses => setFetchedCourses(courses) ).catch(err => setError(err)) 
-        fetchGet('departments').then(depts => setDepartments(depts)).catch(err => setError(err))
-
+    
+    fetchGet('courses').then(courses => setFetchedCourses(courses) ).catch(err => setError(err)) 
+    fetchGet('departments').then(depts => setDepartments(depts)).catch(err => setError(err))
+    
 	},[])
   
-    useEffect(() => {
-
-
+  useEffect(() => {
+    
+    
     
     setCourses(fetchedCourses.map(course => {
       return {...course, ratingCalc: ratingCalc(course.rating) }
     }))
-
-
+    
+    
   }, [fetchedCourses])
 
 
 
-
-
-
-
+  function tempFunc () {
+    courses
+  }
+  
+  
+  
+  
+  
+  
+  
   const getUser = useCallback(async function(token) {
-
+    
     try {
-
+      
       console.log(token)
-
-
+      
+      
       const response = await fetch(`http://localhost:8082/users/me`, {
         method: 'POST',
         headers: {
           "Content-Type": 'application/json'
         },
         body: JSON.stringify({token})
-        })
+      })
       
-
+      
       const json = await response.json();
-
+      
       // Handle non 200 responses:
       if (!response.ok) {
         throw new Error(json.message);
@@ -87,37 +92,38 @@ function App() {
       // setUser(undefined);
       console.log(err)  ;
     }
-  }, [])
-
-
+  }, [setUser])
+  
+  
   useEffect(() => {
-
-
+    
+    
     if (accessToken){
       getUser(accessToken)
     }
-
-
+    
+    
   }, [accessToken])
-
-
+  
+  
   useEffect(() => {
     getUser();
   }, [getUser]);
-
-
-
-
-
+  
+  
+  
+  
+  
   function handleLogout() {
     setAccessToken(null)
     setUser(undefined)
     window.location.reload(false);
-
+    
   }
-
-
-
+  
+  
+  
+  
   return (
     <div className="App">
       <button onClick={() => handleLogout()}>LOGOUT</button>
@@ -132,7 +138,7 @@ function App() {
                 console.log('yor')
                 return <Redirect to="/app/home" />;
               }
-
+              
               return <LoginPage getUser={getUser} setAccessToken={setAccessToken} {...props} />;
             }}
             >

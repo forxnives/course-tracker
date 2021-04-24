@@ -55,7 +55,7 @@ export function ratingDisplayHelper(avgRating) {
         return { adjective: 'Great', color: '#8CD867'}
     }
 
-    if (avgRating < 5){
+    if (avgRating <= 5){
         return { adjective: 'Superb', color: '#32a067'}
     }
 

@@ -23,14 +23,17 @@ function AddComment({user, courseId, setForceUpdate, forceUpdate}) {
             }
 
             
-        }).then(response => {
+        }).then(data => {
 
-            if (response.status===200) {
-                // alert('Successfully Submitted')
-                setCommentText('')
-                setForceUpdate(!forceUpdate)
 
-            }
+
+
+            // alert('Successfully Submitted')
+            setCommentText('')
+            setForceUpdate(!forceUpdate)
+            // window.location.reload()
+
+
 
         }).catch(err => alert(err))
 

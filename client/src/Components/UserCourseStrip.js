@@ -2,10 +2,18 @@ import React, {useState, useEffect} from 'react'
 import {fetchPost} from '../utils/fetchUtils'
 import StarRatings from 'react-star-ratings';
 
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+    Link
+  } from "react-router-dom";
+
 
 function UserCourseStrip({course, user}) {
 
-    const [ rating, setRating ] = useState(0) 
+    const [ rating, setRating ] = useState(null) 
 
     const body = {
         userId: user.id,
@@ -13,12 +21,24 @@ function UserCourseStrip({course, user}) {
     }
 
 
+
+
+
+
     useEffect(()=>{
-        fetchPost('courses/ratecourse', {...body, rating: rating} ).then(data => {
 
-            console.log(data)
 
-        }).catch(err => alert(err))
+
+        if (rating){
+            fetchPost('courses/ratecourse', {...body, rating: rating} ).then(data => {
+
+
+    
+            }).catch(err => console.log(err))
+        }
+
+
+
     },[rating])
 
 
@@ -29,7 +49,7 @@ function UserCourseStrip({course, user}) {
 
         fetchPost('courses/startcourse', body ).then(data => {
 
-        }).catch(err => alert(err))
+        }).catch(err => console.log(err))
 
         window.location.reload()
     }
@@ -41,7 +61,7 @@ function UserCourseStrip({course, user}) {
 
         fetchPost('courses/finishcourse', body ).then(data => {
 
-        }).catch(err => alert(err))
+        }).catch(err => console.log(err))
 
         window.location.reload()
 
@@ -55,7 +75,7 @@ function UserCourseStrip({course, user}) {
 
             console.log(data)
 
-        }).catch(err => alert(err))
+        }).catch(err => console.log(err))
 
         window.location.reload()
 
@@ -70,7 +90,7 @@ function UserCourseStrip({course, user}) {
 
            
                 <figure>
-                    <a ><img style={{maxWidth: '200px'}}  src={course?.image} className="img-fluid" alt=""/><div className="read_more"></div></a>
+                    <Link to={`/app/details/${course._id}`} ><img style={{maxWidth: '200px'}}  src={course?.image} className="img-fluid" alt=""/><div className="read_more"></div></Link>
                 </figure>
            
 
@@ -84,7 +104,7 @@ function UserCourseStrip({course, user}) {
                 <div style={{paddingLeft: '65px'}} >
 
                     <StarRatings 
-                        rating={rating}
+                        rating={rating || course.userRating}
                         starRatedColor="blue"
                         changeRating={setRating}
                         numberOfStars={5}
