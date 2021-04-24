@@ -181,7 +181,9 @@ exports.getUserCourses =  async (userId) => {
 
             let course = await Course.findById(user.courses[i].courseId)
 
-            courses.push({...course._doc, startDate: user.courses[i].startDate, endDate: user.courses[i].endDate})
+    
+
+            courses.push({...course._doc, startDate: user.courses[i].startDate, endDate: user.courses[i].endDate, userRating: user.courses[i].rating})
 
         }
 
@@ -245,7 +247,7 @@ exports.finishUserCourse =  async (userId, courseId) => {
         const newDate = new Date().getTime()
         let completionTime = 0;
 
-        console.log('hithit')
+
         
 
         //add enddate to user's courses
@@ -278,7 +280,7 @@ exports.finishUserCourse =  async (userId, courseId) => {
 
         //add to course's average completion time
 
-        
+            
         if (course.avgCompletionTime){
 
             course.avgCompletionTime = ((course.timesTaken - 1) * course.avgCompletionTime + completionTime )/ course.timesTaken
@@ -305,71 +307,35 @@ exports.rateUserCourse =  async (userId, courseId, rating) => {
         const user = await User.findById(userId)
         const course = await Course.findById(courseId)
 
+        const intStrings = ['one', 'two', 'three', 'four', 'five']
 
         for (let i=0; i<user.courses.length; i++){
 
+            //find course we want to change
             if (user.courses[i].courseId === courseId) {
 
-                if (user.courses[i].rating){
+                //if rating exists and is not equal to new rating
+                if (user.courses[i].rating && user.courses[i].rating !== rating){
 
-                    //if new rating is different
-                    if (user.courses[i].rating != rating){
-
-                        //decrement preious rating from course rating
-
-                        if (user.courses[i].rating === 1){
-                            course.rating.one = course.rating.one - 1
-                        }
-                        if (user.courses[i].rating === 2){
-                            course.rating.two = course.rating.two - 1
-                        }
-                        if (user.courses[i].rating === 3){
-                            course.rating.three = course.rating.three - 1
-                        }
-                        if (user.courses[i].rating === 4){
-                            course.rating.four = course.rating.four - 1
-                        }
-                        if (user.courses[i].rating === 5){
-                            course.rating.five = course.rating.five - 1
-                        }
-
-
-
-                    }else {
-                        return user
-                    }
+                    //decrement old rating count in course 
+                    console.log(course.rating)
+                    course.rating[intStrings[user.courses[i].rating - 1]] -= 1
+                    console.log(course.rating[intStrings[user.courses[i].rating-1]])
+                    
 
                 }
-
+                //changing old rating to new rating in user and course
                 user.courses[i].rating = rating
-
-                //increment new rating to course rating
-                if (rating === 1){
-                    course.rating.one = course.rating.one + 1
-                }
-
-                if (rating === 2){
-                    course.rating.two = course.rating.two + 1
-                }
-
-                if (rating === 3){
-                    course.rating.three = course.rating.three + 1
-                }
-
-                if (rating === 4){
-                    course.rating.four = course.rating.four + 1
-                }
-
-                if (rating === 5){
-                    course.rating.five = course.rating.five + 1
-                }
+                course.rating[intStrings[rating-1]] += 1
 
             }
-        }
+
+       }
 
 
 
-        
+
+
         
         const savedCourse = await course.save()
         const savedUser = await user.save()
