@@ -49,11 +49,11 @@ function CourseDetailsPage({courses=[], user} ) {
         
         <main>	
 
-            <SearchSection />	
+            {/* <SearchSection />	 */}
 
 
             
-            <nav className="secondary_nav sticky_horizontal_2">
+            <nav style={{backgroundColor: '#0077B8'}} className="secondary_nav sticky_horizontal_2">
                 <div className="container">
                     <ul className="clearfix">
                         <li><a href="#description" className="active">Description</a></li>

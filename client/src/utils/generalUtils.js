@@ -53,6 +53,28 @@ export function searchCourses(courses, query) {
 
 
 
+export function filterCourses(courses, filters) {
+
+
+
+  if (filters.dept){
+    courses = courses.filter(course => {
+      return course.department.name === filters.dept
+    })
+  }
+
+  if (filters.rating){
+    courses = courses.filter(course => {
+      return course.ratingCalc.avgRating >= filters.rating
+    })
+  }
+
+  return courses
+}
+
+
+
+
 export function arrayConvert(string) {
 
   // string.replace(/\s/g, '')

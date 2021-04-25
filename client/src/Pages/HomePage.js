@@ -4,6 +4,7 @@ import Suggestions from '../Components/Suggestions.js'
 import HowItWorks from '../Components/HowItWorks.js'
 import Footer from '../Components/Footer.js'
 
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,11 +12,20 @@ import {
   Link
 } from "react-router-dom";
 
+
+
+
+
+
+
+
 function HomePage({departments, courses, reduceMap, setReduceMap}) {
 
 
-
     return (
+      <>
+
+
         <div id="page">
 
       
@@ -32,6 +42,8 @@ function HomePage({departments, courses, reduceMap, setReduceMap}) {
         <Footer />
   
         </div>
+
+        </>
     )
 }
 

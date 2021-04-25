@@ -54,8 +54,9 @@ function LoginPage(props) {
 	
 	<div id="login">
 		<aside>
-			<figure>
-				<a href="index.html"><img src="img/logo_sticky.svg" width="165" height="35" alt="" class="logo_sticky"/></a>
+			<figure style={{backgroundColor: '#003049'}} >
+				<a href="index.html"><img src="https://static.wixstatic.com/media/369c26_9b881804a868429db8fe1bb25c2bcf2b~mv2.png/v1/fill/w_172,h_34,al_c,q_85,usm_0.66_1.00_0.01/ADTLogo.webp" width="165" height="35" alt="" class="logo_sticky"/></a>
+				<h5 style={{color: 'white', opacity: '40%'}}>Course Management System</h5>
 			</figure>
 			  <form onSubmit={(e)=>handleSubmit(e)}>
 				<div class="access_social">
@@ -84,9 +85,9 @@ function LoginPage(props) {
 					<div class="float-right mt-1"><a id="forgot" href="javascript:void(0);">Forgot Password?</a></div>
 				</div>
 				<button type='submit'  class="btn_1 rounded full-width">Login Now</button>
-				<div class="text-center add_top_10">New to Sparker? <strong><Link to="/register">Register!</Link></strong></div>
+				<div class="text-center add_top_10">Are you new? <strong><Link to="/register">Register!</Link></strong></div>
 			</form>
-			<div class="copy">© 2018 Sparker</div>
+			<div class="copy">© 2021 Adtelligent</div>
 		</aside>
 	</div>
 

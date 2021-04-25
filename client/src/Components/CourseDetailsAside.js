@@ -3,16 +3,11 @@ import React from 'react'
 function CourseDetailsAside() {
     return (
         <aside className="col-lg-3">
-        <div className="widget search_blog">
-            <div className="form-group">
-                <input type="text" name="search" id="search" className="form-control" placeholder="Search.."/>
-                <span><input type="submit" value="Search"/></span>
-            </div>
-        </div>
+
 
         <div className="widget">
             <div className="widget-title">
-                <h4>Latest Post</h4>
+                <h4>Related Courses</h4>
             </div>
             <ul className="comments-list">
                 <li>
@@ -41,7 +36,7 @@ function CourseDetailsAside() {
 
         <div className="widget">
             <div className="widget-title">
-                <h4>Categories</h4>
+                <h4>Departments</h4>
             </div>
             <ul className="cats">
                 <li><a href="#">Food <span>(12)</span></a></li>
@@ -53,7 +48,7 @@ function CourseDetailsAside() {
 
         <div className="widget">
             <div className="widget-title">
-                <h4>Popular Tags</h4>
+                <h4>Keywords</h4>
             </div>
             <div className="tags">
                 <a href="#">Food</a>

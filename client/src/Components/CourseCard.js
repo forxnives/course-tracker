@@ -9,7 +9,7 @@ import {
     Link
   } from "react-router-dom";
 
-function CourseCard({course, index, setSelectedCourse}) {
+function CourseCard({course, index}) {
 
 
     const ratingDisplay = ratingDisplayHelper(course.ratingCalc.avgRating)
@@ -18,7 +18,7 @@ function CourseCard({course, index, setSelectedCourse}) {
 
 
     return (
-        <div onClick={() => setSelectedCourse(index)} className="col-md-6">
+        <div  className="col-md-6">
         <div className="strip grid">
             <figure>
                 <Link className="wish_bt">Add to my courses</Link>

@@ -29,9 +29,9 @@ function UserCourses({user}) {
 
     return (
         <>
-		<SearchSection/>
-        <div className="sub_header_in sticky_header">
-		<div className="container">
+
+        <div style={{backgroundColor: '#0077B8'}} className="sub_header_in sticky_header">
+		<div  className="container">
 			<h1>Your Courses</h1>
 		</div>
 

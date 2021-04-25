@@ -11,7 +11,8 @@ import NewCoursePage from './Pages/NewCoursePage';
 import {fetchGet} from './utils/fetchUtils.js'
 import { ratingCalc } from './utils/ratingUtils.js'
 import {useLocalStorageState} from './utils/hooks.js'
-import {searchCourses} from './utils/generalUtils.js'
+import {searchCourses, filterCourses} from './utils/generalUtils.js'
+import Navbar from './Components/Navbar.js'
 
 
 import {
@@ -53,10 +54,20 @@ function App() {
 
   useEffect(() => {
 
-    let tempCourses = courses
+    console.log('updating?')
+
+    let tempCourses = [...courses]
 
     if (reduceMap.search) {
-      tempCourses = searchCourses(courses, reduceMap.search)
+
+      tempCourses = searchCourses(tempCourses, reduceMap.search)
+    }
+
+    if (reduceMap.filters){
+
+      tempCourses = filterCourses(tempCourses, reduceMap.filters)
+
+
     }
 
 
@@ -153,7 +164,6 @@ function App() {
   
   return (
     <div className="App">
-      <button onClick={() => handleLogout()}>LOGOUT</button>
 
       <Router>
         <Switch>
@@ -162,7 +172,7 @@ function App() {
             path="/"
             render={props => {
               if (user) {
-                console.log('yor')
+
                 return <Redirect to="/app/home" />;
               }
               
@@ -195,19 +205,12 @@ function App() {
             
             >
 
+              { user && (<Navbar handleLogout={handleLogout} />)}
+
               <Switch>
 
-                {/* <Route path='/'
-            render={props => {
-              if (user) {
-                return<HomePage  departments={departments} />
-              }
 
-              return <LoginPage getUser={getUser} setAccessToken={setAccessToken} {...props} />;
-            }}
-                  >
-
-                  </Route> */}
+   
 
               <Route path='/app/home'
             render={props => {
@@ -227,7 +230,13 @@ function App() {
                         render={props => {
                           if (user) {
                             
-                            return <CourseListPage setSelectedCourse={setSelectedCourse} courses={reducedCourses || courses}/>
+                            return <CourseListPage reduceMap={reduceMap} setReduceMap={setReduceMap} departments={departments} courses={
+                              
+                              
+                              (reducedCourses.length || reduceMap.search) ? (reducedCourses) : (courses)
+                            
+                            
+                            }/>
                           }
             
                           return <LoginPage getUser={getUser} setAccessToken={setAccessToken} {...props} />;

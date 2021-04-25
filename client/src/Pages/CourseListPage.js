@@ -6,7 +6,7 @@ import CourseListResults from '../Components/CourseListResults.js'
 import Footer from '../Components/Footer.js'
 
 
-function CourseListPage({courses, setSelectedCourse}) {
+function CourseListPage({courses, setSelectedCourse, departments, reduceMap, setReduceMap}) {
     return (
 	<>
 
@@ -20,12 +20,12 @@ function CourseListPage({courses, setSelectedCourse}) {
 		<main>
 
 
-			<SearchSection />
+			<SearchSection courses={courses} departments={departments} reduceMap={reduceMap} setReduceMap={setReduceMap}  />
 
-			<SearchFilters />
+			<SearchFilters setReduceMap={setReduceMap} reduceMap={reduceMap} />
 
 			
-			<CourseListResults setSelectedCourse={setSelectedCourse} courses={courses}/>
+			<CourseListResults setReduceMap={setReduceMap} reduceMap={reduceMap} courses={courses}/>
 
 			
 

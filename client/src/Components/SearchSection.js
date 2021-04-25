@@ -1,10 +1,20 @@
 import React from 'react'
+import Search from './Search.js'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams,
+    useRouteMatch
+  } from "react-router-dom";
 
 
 
-function SearchSection() {
+function SearchSection({courses, departments, reduceMap, setReduceMap}) {
 
 
+    let match = useRouteMatch();
 
 
 
@@ -14,29 +24,22 @@ function SearchSection() {
         		<div id="results">
 		   <div className="container">
 			   <div className="row">
-				   <div className="col-lg-3 col-md-4 col-10">
-					   <h4><strong>145</strong> result for All listing</h4>
-				   </div>
-				   <div className="col-lg-9 col-md-8 col-2">
-					   <a href="#0" className="search_mob btn_search_mobile"></a> 
-						<div className="row no-gutters custom-search-input-2 inner">
-							<div style={{paddingRight: '0px'}} className="col-lg-8">
-								<div className="form-group">
-									<input className="form-control" type="text" placeholder="What are you looking for..."/>
-									{/* <i className="icon_search"></i> */}
-								</div>
-							</div>
 
-							<div style={{height: '40px', display: 'flex', paddingLeft: '0px'}} className="col-lg-3">
-							<img style={{opacity: '20%', width: '30px', borderRight: '1px solid gray'}} src='https://upload.wikimedia.org/wikipedia/commons/4/4b/Feather-arrows-chevron-down.svg'></img>
-							<input className="form-control" type="text" placeholder="Department"/>
+				   {/* <div className="col-md-8 col-2"> */}
 
-							</div>
-							<div className="col-lg-1">
-								<input type="submit" value="Search"/>
-							</div>
-						</div>
-				   </div>
+				   <Search departments={departments} reduceMap={reduceMap} setReduceMap={setReduceMap} />
+
+
+
+				   {
+					   match.path === '/app/list' &&
+					   
+					   <div className="">
+					   <h4 style={{textAlign: 'center'}} ><strong>{courses && (courses.length)}</strong> results {reduceMap?.search && (`for ${reduceMap.search}`)}</h4>
+				   </div>}
+
+
+
 			   </div>
 
 				<div className="search_mob_wp">

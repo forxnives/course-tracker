@@ -3,7 +3,7 @@ import CourseListFilters from './CourseListFilters.js'
 import CourseCard from './CourseCard.js'
 
 
-function CourseListResults({courses, setSelectedCourse} = {courses:[], setSelectedCourse}) {
+function CourseListResults({courses, setReduceMap, reduceMap} = {courses:[], setReduceMap, reduceMap}) {
 
 	
 
@@ -14,14 +14,14 @@ function CourseListResults({courses, setSelectedCourse} = {courses:[], setSelect
 		<div className="container margin_60_35">
 			<div className="row">
 
-                <CourseListFilters />
+                <CourseListFilters setReduceMap={setReduceMap} reduceMap={reduceMap}/>
 
 				<div className="col-lg-9">
 
 					<div className="row">
 
 						{courses.map((course, i)=> (
-							<CourseCard setSelectedCourse={setSelectedCourse} index={i} key={`course_${i}`} course={course}/>
+							<CourseCard index={i} key={`course_${i}`} course={course}/>
 						))}
 
 

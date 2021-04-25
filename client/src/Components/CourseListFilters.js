@@ -1,10 +1,22 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-function CourseListFilters() {
+function CourseListFilters({setReduceMap, reduceMap}) {
+
+    const [ sliderValue, setSliderValue ] = useState(0)
+
+
+    function handleRatingSlider(e) {
+
+        setReduceMap({...reduceMap, filters: {...reduceMap.filters, rating: e.target.valueAsNumber/2}})
+        setSliderValue(e.target.valueAsNumber/2)
+        
+    }
+
+
     return (
         <aside className="col-lg-3" id="sidebar">
         <div id="filters_col">
-            <a data-toggle="collapse" href="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters" id="filters_col_bt">Filters </a>
+            <a style={{cursor:'default'}} >Filters </a>
             <div className="collapse show" id="collapseFilters">
                 <div className="filter_type">
                     <h6>Category</h6>
@@ -36,9 +48,9 @@ function CourseListFilters() {
                     </ul>
                 </div>
                 <div className="filter_type">
-                    <h6>Distance</h6>
-                    <div className="distance"> Radius around selected destination <span></span> km</div>
-                    <input type="range" min="10" max="100" step="10" data-orientation="horizontal"/>
+                    <h6>Rating</h6>
+                    <div className="distance"> Minimum rating <span> {sliderValue} stars</span> </div>
+                    <input defaultValue='0' onChange={handleRatingSlider} type="range" min="0" max="10" step="1" data-orientation="horizontal"/>
                 </div>
                 <div className="filter_type">
                     <h6>Rating</h6>

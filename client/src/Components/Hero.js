@@ -1,32 +1,12 @@
 import React, {useState} from 'react'
-import { useHistory } from "react-router-dom";
+import Search from './Search.js'
+
+
 
 
 function Hero({departments, reduceMap, setReduceMap}) {
 
-  let history = useHistory();
 
-  const [dropDownToggle, setDropDownToggle] = useState(false)
-
-  const [ searchInput, setSearchInput ] = useState('')
-
-
-
-
-  function handleDeptClick(dept) {
-
-    setReduceMap({...reduceMap, filters: {...reduceMap.filters, dept: dept}})
-    setDropDownToggle(false)
-
-  }
-
-  function handleKeypress (e) {
-    //it triggers by pressing the enter key
-    // console.log(e.charC)
-  if (e.charCode === 13) {
-    history.push('/app/list')
-  }
-};
 
 
     return (
@@ -34,11 +14,13 @@ function Hero({departments, reduceMap, setReduceMap}) {
         <section className="hero_single version_2">
           <div className="wrapper">
             <div className="container">
-              <h3>Find what you need!</h3>
-              <p>Discover top rated hotels, shops and restaurants around the world</p>
+              <h3 style={{paddingBottom: '90px'}}> <span >Brush</span> <span style={{color: '#FD5B19'}}>up</span> on your skills</h3>
+              <p>Discover the best courses from around the web</p>
             </div>
 
-        <div className="container">
+        
+        <Search departments={departments} reduceMap={reduceMap} setReduceMap={setReduceMap} />
+        {/* <div className="container">
           <div className="row">
             <div className="col-md-12">
                     <div className="input-group" id="adv-search">
@@ -58,13 +40,13 @@ function Hero({departments, reduceMap, setReduceMap}) {
                                        </div>
 
                                 </div>
-                                <button onClick={() => history.push('/app/list/')} type="button" className="btn btn-primary"><span className="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                <button style={{backgroundColor: '#003049'}} onClick={() => history.push('/app/list/')} type="button" className="btn btn-primary"><span className="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                             </div>
                         </div>
                     </div>
                   </div>
                 </div>
-          </div>
+          </div> */}
 
           </div>
           
