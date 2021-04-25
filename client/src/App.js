@@ -11,6 +11,7 @@ import NewCoursePage from './Pages/NewCoursePage';
 import {fetchGet} from './utils/fetchUtils.js'
 import { ratingCalc } from './utils/ratingUtils.js'
 import {useLocalStorageState} from './utils/hooks.js'
+import {searchCourses} from './utils/generalUtils.js'
 
 
 import {
@@ -31,9 +32,41 @@ function App() {
   const [user, setUser] = useState(undefined);
   const [ fetchedCourses, setFetchedCourses ] = useState([])
   const [ courses, setCourses ] = useState([])
+  const [ reducedCourses, setReducedCourses ] = useState([])
   const [ departments, setDepartments ] = useState([])
   const [ error, setError ] = useState(null)
   const [ selectedCourse, setSelectedCourse ] = useState(null)
+  const [selectedDept, setSelectedDept] = useState(null)
+
+  const [ reduceMap, setReduceMap ] = useState({
+    filters: {
+      dept: null,
+      rating: null,
+      keywords: []
+
+    },
+    sort:  null,
+    search: null,
+
+  })
+
+
+  useEffect(() => {
+
+    let tempCourses = courses
+
+    if (reduceMap.search) {
+      tempCourses = searchCourses(courses, reduceMap.search)
+    }
+
+
+
+    setReducedCourses(tempCourses)
+
+
+  },[reduceMap])
+
+  console.log(reducedCourses)
   
   useEffect(()=>{
     
@@ -49,27 +82,21 @@ function App() {
     setCourses(fetchedCourses.map(course => {
       return {...course, ratingCalc: ratingCalc(course.rating) }
     }))
+
+
     
     
   }, [fetchedCourses])
 
 
 
-  function tempFunc () {
-    courses
-  }
-  
-  
-  
-  
-  
   
   
   const getUser = useCallback(async function(token) {
     
     try {
       
-      console.log(token)
+
       
       
       const response = await fetch(`http://localhost:8082/users/me`, {
@@ -186,7 +213,7 @@ function App() {
             render={props => {
               if (user) {
 
-                return<HomePage courses={courses}  departments={departments} />
+                return<HomePage reduceMap={reduceMap} setReduceMap={setReduceMap} courses={courses}  departments={departments} />
               }
 
               return <LoginPage getUser={getUser} setAccessToken={setAccessToken} {...props} />;
@@ -200,7 +227,7 @@ function App() {
                         render={props => {
                           if (user) {
                             
-                            return <CourseListPage setSelectedCourse={setSelectedCourse} courses={courses}/>
+                            return <CourseListPage setSelectedCourse={setSelectedCourse} courses={reducedCourses || courses}/>
                           }
             
                           return <LoginPage getUser={getUser} setAccessToken={setAccessToken} {...props} />;

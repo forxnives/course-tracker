@@ -11,7 +11,7 @@ import {
   Link
 } from "react-router-dom";
 
-function HomePage({departments, courses}) {
+function HomePage({departments, courses, reduceMap, setReduceMap}) {
 
 
 
@@ -21,7 +21,7 @@ function HomePage({departments, courses}) {
       
         <main className="pattern">
   
-          <Hero departments={departments} />
+          <Hero reduceMap={reduceMap} setReduceMap={setReduceMap} departments={departments} />
   
           <Suggestions courses={courses} />
   
