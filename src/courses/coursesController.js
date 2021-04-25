@@ -331,19 +331,11 @@ exports.rateUserCourse =  async (userId, courseId, rating) => {
             }
 
        }
-
-
-
-
-
         
         const savedCourse = await course.save()
         const savedUser = await user.save()
-
-    
         return savedUser
-
-
+        
 
     } catch (err){
         throw err;
