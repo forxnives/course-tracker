@@ -1,18 +1,30 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
-function SearchFilters() {
+function SearchFilters({setReduceMap, reduceMap}) {
+
+	const [ sortMode, setSortMode ] = useState('oldest')
+
+	useEffect(()=> {
+		setReduceMap({...reduceMap, sort: sortMode})
+	},[sortMode])
+
     return (
 		<div className="filters_listing version_2  sticky_horizontal">
 			<div className="container">
 				<ul className="clearfix">
 					<li>
 						<div className="switch-field">
-							<input type="radio" id="all" name="listing_filter" value="all" defaultChecked/>
-							<label htmlFor="all">All</label>
-							<input type="radio" id="popular" name="listing_filter" value="popular"/>
-							<label htmlFor="popular">Popular</label>
-							<input type="radio" id="latest" name="listing_filter" value="latest"/>
+
+							<input onChange={()=>setSortMode('oldest')} type="radio" id="oldest" name="listing_filter" value="oldest" defaultChecked/>
+							<label htmlFor="oldest">Oldest</label>
+							<input onChange={()=>setSortMode('latest')} type="radio" id="latest" name="listing_filter" value="latest"/>
 							<label htmlFor="latest">Latest</label>
+							<input onChange={()=>setSortMode('rating')} type="radio" id="all" name="listing_filter" value="all"/>
+							<label htmlFor="all">Rating</label>
+							<input onChange={()=>setSortMode('popular')} type="radio" id="popular" name="listing_filter" value="popular"/>
+							<label htmlFor="popular">Popular</label>
+
+
 						</div>
 					</li>
 

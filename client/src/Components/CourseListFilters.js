@@ -1,8 +1,12 @@
 import React, {useState} from 'react'
+import {titleCase} from '../utils/generalUtils.js'
 
-function CourseListFilters({setReduceMap, reduceMap}) {
+function CourseListFilters({setReduceMap, reduceMap, keywords}) {
 
     const [ sliderValue, setSliderValue ] = useState(0)
+    
+
+    const siteArray = ['Udemy', 'Coursera', 'Skillshare', 'Youtube']
 
 
     function handleRatingSlider(e) {
@@ -12,6 +16,47 @@ function CourseListFilters({setReduceMap, reduceMap}) {
         
     }
 
+    function handleSiteFilter(e, site) {
+
+
+
+        if (e.target.checked){
+            setReduceMap({...reduceMap, filters: {...reduceMap.filters, sites: [...reduceMap.filters.sites, site]}})
+        }else {
+
+            let index = reduceMap.filters.sites.indexOf(site)
+            
+
+            if (index > -1) {
+
+                let siteFilters = [...reduceMap.filters.sites]
+                siteFilters.splice(index, 1)
+                setReduceMap({...reduceMap, filters: {...reduceMap.filters, sites: siteFilters}})
+              }
+        }
+
+    }
+
+
+    function handleKeywordFilter(e, keyword) {
+
+        if (e.target.checked){
+            setReduceMap({...reduceMap, filters: {...reduceMap.filters, keywords: [...reduceMap.filters.keywords, keyword[0]]}})
+        }else {
+
+            let index = reduceMap.filters.keywords.indexOf(keyword[0])
+            
+
+            if (index > -1) {
+
+                let keywordFilters = [...reduceMap.filters.keywords]
+                keywordFilters.splice(index, 1)
+                setReduceMap({...reduceMap, filters: {...reduceMap.filters, keywords: keywordFilters}})
+              }
+        }
+
+    }
+
 
     return (
         <aside className="col-lg-3" id="sidebar">
@@ -19,32 +64,21 @@ function CourseListFilters({setReduceMap, reduceMap}) {
             <a style={{cursor:'default'}} >Filters </a>
             <div className="collapse show" id="collapseFilters">
                 <div className="filter_type">
-                    <h6>Category</h6>
+                    <h6>Site</h6>
                     <ul>
-                        <li>
-                            <label className="container_check">Restaurants <small>43</small>
-                              <input type="checkbox"/>
-                              <span className="checkmark"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label className="container_check">Shops <small>33</small>
-                              <input type="checkbox"/>
-                              <span className="checkmark"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label className="container_check">Bars <small>12</small>
-                              <input type="checkbox"/>
-                              <span className="checkmark"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label className="container_check">Events <small>44</small>
-                              <input type="checkbox"/>
-                              <span className="checkmark"></span>
-                            </label>
-                        </li>
+
+                        {
+                            siteArray.map(site =>(
+                                <li>
+                                <label className="container_check">{site} 
+                                  <input onChange={(e) => handleSiteFilter(e, site)} type="checkbox"/>
+                                  <span className="checkmark"></span>
+                                </label>
+                            </li>
+                            ))
+                        }
+
+
                     </ul>
                 </div>
                 <div className="filter_type">
@@ -53,32 +87,18 @@ function CourseListFilters({setReduceMap, reduceMap}) {
                     <input defaultValue='0' onChange={handleRatingSlider} type="range" min="0" max="10" step="1" data-orientation="horizontal"/>
                 </div>
                 <div className="filter_type">
-                    <h6>Rating</h6>
+                    <h6>Top Keywords</h6>
                     <ul>
-                        <li>
-                            <label className="container_check">Superb 9+ <small>34</small>
-                              <input type="checkbox"/>
-                              <span className="checkmark"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label className="container_check">Very Good 8+ <small>21</small>
-                              <input type="checkbox"/>
-                              <span className="checkmark"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label className="container_check">Good 7+ <small>15</small>
-                              <input type="checkbox"/>
-                              <span className="checkmark"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label className="container_check">Pleasant 6+ <small>34</small>
-                              <input type="checkbox"/>
-                              <span className="checkmark"></span>
-                            </label>
-                        </li>
+
+                        {keywords.map(keyword => (
+                            <li>
+                                <label className="container_check">{titleCase(keyword[0])}<small>{keyword[1]}</small>
+                                    <input onChange={(e) =>  handleKeywordFilter(e, keyword)}  type="checkbox"/>
+                                    <span className="checkmark"></span>
+                                </label>
+                            </li>
+                        ))}
+
                     </ul>
                 </div>
             </div>

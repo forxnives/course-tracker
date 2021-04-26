@@ -11,7 +11,7 @@ import NewCoursePage from './Pages/NewCoursePage';
 import {fetchGet} from './utils/fetchUtils.js'
 import { ratingCalc } from './utils/ratingUtils.js'
 import {useLocalStorageState} from './utils/hooks.js'
-import {searchCourses, filterCourses} from './utils/generalUtils.js'
+import {searchCourses, filterCourses, sortCourses} from './utils/generalUtils.js'
 import Navbar from './Components/Navbar.js'
 
 
@@ -43,6 +43,7 @@ function App() {
     filters: {
       dept: null,
       rating: null,
+      sites: [], 
       keywords: []
 
     },
@@ -54,7 +55,6 @@ function App() {
 
   useEffect(() => {
 
-    console.log('updating?')
 
     let tempCourses = [...courses]
 
@@ -70,6 +70,10 @@ function App() {
 
     }
 
+    if (reduceMap.sort && reduceMap.sort !== 'oldest') {
+      tempCourses = sortCourses(tempCourses, reduceMap.sort)
+    }
+
 
 
     setReducedCourses(tempCourses)
@@ -77,7 +81,7 @@ function App() {
 
   },[reduceMap])
 
-  console.log(reducedCourses)
+
   
   useEffect(()=>{
     
@@ -233,7 +237,7 @@ function App() {
                             return <CourseListPage reduceMap={reduceMap} setReduceMap={setReduceMap} departments={departments} courses={
                               
                               
-                              (reducedCourses.length || reduceMap.search) ? (reducedCourses) : (courses)
+                              (reducedCourses.length || reduceMap.search || reduceMap.filters.sites.length) ? (reducedCourses) : (courses)
                             
                             
                             }/>
