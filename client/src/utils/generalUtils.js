@@ -1,4 +1,4 @@
-import { isCompositeComponent } from "react-dom/test-utils"
+
 
 export function searchCourses(courses, query) {
 
@@ -46,19 +46,15 @@ export function searchCourses(courses, query) {
       return accumulator
   },  [])
   
-
   return tempCourses.sort( (first, second) => {
     return second.relevance - first.relevance
   })
 }
 
 
-
-
 export function filterCourses(courses, filters) {
 
-
-
+  
   if (filters.dept){
     courses = courses.filter(course => {
       return course.department.name === filters.dept
@@ -71,7 +67,7 @@ export function filterCourses(courses, filters) {
     })
   }
 
-  if (filters.sites.length){
+  if (filters.sites?.length){
 
     courses = filters.sites.reduce((accumulator, site) => {
 
@@ -85,20 +81,14 @@ export function filterCourses(courses, filters) {
 
   }
 
-  if (filters.keywords.length){
+  if (filters.keywords?.length){
 
     courses = filters.keywords.reduce((accumulator, keyword) => {
 
       let filteredCourses = courses.filter(course => {
-
         const keywords = course.keywords.map(kw => (kw.toLowerCase().trim()))
-        
-
         return keywords.includes(keyword)
-        
-        
         })
-      // console.log(filteredCourses)
 
       if (filteredCourses.length){
         return [...accumulator, ...filteredCourses]
@@ -112,21 +102,17 @@ export function filterCourses(courses, filters) {
 
 
 export function getTopKeywords(courses){
-
-
   const keywords = courses.reduce((accumulator, course) => {
 
     for (let k=0; k< course.keywords.length; k++){
       let currentKeyword = course.keywords[k].toLowerCase().trim()
       if (currentKeyword in accumulator){
-
         accumulator[currentKeyword] = accumulator[currentKeyword] + 1
       }else{
         accumulator[currentKeyword] = 1
       }
     }
     return accumulator
-
   }, {})
 
   const sortable = [];
@@ -134,7 +120,6 @@ export function getTopKeywords(courses){
     if (keyword !== ""){
       sortable.push([keyword, keywords[keyword]]);
     }
-
 }
 
 sortable.sort((a, b) => {
@@ -144,51 +129,91 @@ sortable.sort((a, b) => {
   return sortable.slice(0, 5)
 }
 
+const sortModeMap = {
+  'rating': (a, b) => (b.ratingCalc.avgRating - a.ratingCalc.avgRating),
+  'popular': (a, b) => {
+    
+    return b.timesTaken - a.timesTaken
+  }
+}
 
 export function sortCourses(courses, mode){
-
   if (mode==='latest'){
     return courses.reverse()
   }
-
-  const sortModeMap = {
-    'rating': (a, b) => (b.ratingCalc.avgRating - a.ratingCalc.avgRating),
-    'popular': (a, b) => {
-      
-      return b.timesTaken - a.timesTaken
-    }
-  }
-
   if (mode) {
-    console.log(courses.sort(sortModeMap[mode]))
+
     return courses.sort(sortModeMap[mode])
   }
-
- 
-
   return courses
-
-  // return courses
-
 } 
 
 
-export function arrayConvert(string) {
+export function getRecommended(courses, deptId  ) {
 
- 
+  const recommended = courses.filter(course => (
+    course.department.id === deptId
+  ))
+  
+  recommended.sort((a, b) =>
+  (b.ratingCalc.avgRating - a.ratingCalc.avgRating)
+  )
+
+  return recommended
+  
+}
 
 
-  return string.split(',')
+
+function trendCalc(startTimes) {
+
+
+  // console.log(course)
+
+  if (startTimes.length){
+
+    const now = new Date()
+
+    const timeSinceLast = now.getTime() - Number(startTimes[startTimes.length - 1])
+  
+    const avgTimeBetween = (startTimes.reduce((accumulator, time) => {
+      const timeInt = Number(time)
+      return accumulator + timeInt
+    },0))/startTimes.length
+
+    return avgTimeBetween * timeSinceLast
+
+  }
+
+
 
 
 }
+
+
+export function getTrending(courses) {
+
+  // console.log(courses)
+
+  const trending = [...courses].sort((a, b) => {
+    return trendCalc(b.last10StartTimes) - trendCalc(a.last10StartTimes)
+  })
+
+  return trending
+}
+
 
 export function titleCase(str) {
   const splitStr = str.toLowerCase().split(' ');
   for (let i = 0; i < splitStr.length; i++) {
       splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
   }
-
   return splitStr.join(' '); 
 }
+
+export function arrayConvert(string) {
+  return string.split(',')
+}
+
+
 

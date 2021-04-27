@@ -44,8 +44,8 @@ function Search({departments, reduceMap, setReduceMap}) {
                                     <div style={{opacity: dropDownToggle ? ('100%'): ('0%') }} className='customDropdown'>
 
 
-                                      {departments?.map(dept => (
-                                      <div className='dropdown-dept' onClick={() => handleDeptClick(dept.name)} style={{cursor: 'pointer'}}><h5 style={{padding: '5px 10px', margin: '0px'}} >{dept.name}</h5></div>
+                                      {departments?.map((dept, i) => (
+                                      <div key={`dept${i}`} className='dropdown-dept' onClick={() => handleDeptClick(dept.name)} style={{cursor: 'pointer'}}><h5 style={{padding: '5px 10px', margin: '0px'}} >{dept.name}</h5></div>
                                       ))}
                                     
                                        </div>

@@ -19,7 +19,7 @@ import {
 
 
 
-function HomePage({departments, courses, reduceMap, setReduceMap}) {
+function HomePage({user, departments, courses, reduceMap, setReduceMap}) {
 
 
     return (
@@ -33,7 +33,7 @@ function HomePage({departments, courses, reduceMap, setReduceMap}) {
   
           <Hero reduceMap={reduceMap} setReduceMap={setReduceMap} departments={departments} />
   
-          <Suggestions courses={courses} />
+          <Suggestions deptId={user.departmentId} courses={courses} />
   
           <HowItWorks />
   

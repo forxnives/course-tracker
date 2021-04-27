@@ -220,7 +220,7 @@ function App() {
             render={props => {
               if (user) {
 
-                return<HomePage reduceMap={reduceMap} setReduceMap={setReduceMap} courses={courses}  departments={departments} />
+                return<HomePage user={user} reduceMap={reduceMap} setReduceMap={setReduceMap} courses={courses}  departments={departments} />
               }
 
               return <LoginPage getUser={getUser} setAccessToken={setAccessToken} {...props} />;
@@ -237,7 +237,7 @@ function App() {
                             return <CourseListPage reduceMap={reduceMap} setReduceMap={setReduceMap} departments={departments} courses={
                               
                               
-                              (reducedCourses.length || reduceMap.search || reduceMap.filters.sites.length) ? (reducedCourses) : (courses)
+                              (reducedCourses?.length || reduceMap?.search || reduceMap?.filters?.sites?.length) ? (reducedCourses) : (courses)
                             
                             
                             }/>

@@ -8,6 +8,7 @@ function SearchFilters({setReduceMap, reduceMap}) {
 		setReduceMap({...reduceMap, sort: sortMode})
 	},[sortMode])
 
+	
     return (
 		<div className="filters_listing version_2  sticky_horizontal">
 			<div className="container">
