@@ -35,7 +35,7 @@ function Search({departments, reduceMap, setReduceMap}) {
           <div className="row">
             <div className="col-md-12">
                     <div className="input-group" id="adv-search">
-                        <input onKeyPress={(e) => handleKeypress(e)} value={reduceMap && (reduceMap.search)} onChange={(e)=> setReduceMap({...reduceMap, search:e.target.value})} type="text" className="form-control search-input" placeholder="Search for courses" />
+                        <input onKeyPress={(e) => handleKeypress(e)} value={reduceMap?.search ? (reduceMap.search): ('')} onChange={(e)=> setReduceMap({...reduceMap, search:e.target.value})} type="text" className="form-control search-input" placeholder="Search for courses" />
                         <div className="input-group-btn">
                             <div className="btn-group" role="group">
                                 <div className="dropdown dropdown-lg">

@@ -193,7 +193,7 @@ function App() {
               if (user) {
                 return <Redirect to="/app/home" />;
               }
-              return <RegisterPage setAccessToken={setAccessToken} updateUser={setUser} {...props} />;
+              return <RegisterPage departments={departments} setAccessToken={setAccessToken} updateUser={setUser} {...props} />;
             }}
           >
           
@@ -234,7 +234,7 @@ function App() {
                         render={props => {
                           if (user) {
                             
-                            return <CourseListPage reduceMap={reduceMap} setReduceMap={setReduceMap} departments={departments} courses={
+                            return <CourseListPage user={user} reduceMap={reduceMap} setReduceMap={setReduceMap} departments={departments} courses={
                               
                               
                               (reducedCourses?.length || reduceMap?.search || reduceMap?.filters?.sites?.length) ? (reducedCourses) : (courses)

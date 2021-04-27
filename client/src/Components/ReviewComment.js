@@ -2,7 +2,7 @@ import React from 'react'
 
 function ReviewComment({comment}) {
 
-    console.log(comment.userName)
+
     return (
         <div className="review-box clearfix">
         <figure className="rev-thumb"><img src="img/avatar1.jpg" alt=""/>

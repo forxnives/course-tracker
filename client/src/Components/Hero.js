@@ -14,9 +14,6 @@ function Hero({departments, reduceMap, setReduceMap}) {
 
   const history = useHistory()
 
-  console.log(history)
-
-
   function handleDeptClick(department) {
     setReduceMap(
       

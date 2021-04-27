@@ -26,7 +26,6 @@ function NewCoursePage({departments}) {
     }, [departments]) 
     
  
-    console.log(courseDepartment)
 
     function handleSubmit(e) {
         e.preventDefault()

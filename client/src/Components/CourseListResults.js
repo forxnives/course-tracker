@@ -4,7 +4,7 @@ import CourseCard from './CourseCard.js';
 import {getTopKeywords} from '../utils/generalUtils.js'
 
 
-function CourseListResults({courses, setReduceMap, reduceMap} = {courses:[], setReduceMap, reduceMap}) {
+function CourseListResults({courses, setReduceMap, reduceMap, user} = {courses:[], setReduceMap, reduceMap, user}) {
 
 	const [ topKeywords, setTopKeywords ] = useState(getTopKeywords(courses))
 
@@ -19,7 +19,7 @@ function CourseListResults({courses, setReduceMap, reduceMap} = {courses:[], set
 					<div className="row">
 
 						{courses.map((course, i)=> (
-							<CourseCard index={i} key={`course_${i}`} course={course}/>
+							<CourseCard userId={user.id} index={i} key={`course_${i}`} course={course}/>
 						))}
 
 					</div>

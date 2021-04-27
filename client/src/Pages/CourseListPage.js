@@ -6,7 +6,7 @@ import CourseListResults from '../Components/CourseListResults.js'
 import Footer from '../Components/Footer.js'
 
 
-function CourseListPage({courses, setSelectedCourse, departments, reduceMap, setReduceMap}) {
+function CourseListPage({courses, user, departments, reduceMap, setReduceMap}) {
     return (
 	<>
 
@@ -25,7 +25,7 @@ function CourseListPage({courses, setSelectedCourse, departments, reduceMap, set
 			<SearchFilters setReduceMap={setReduceMap} reduceMap={reduceMap} />
 
 			
-			<CourseListResults setReduceMap={setReduceMap} reduceMap={reduceMap} courses={courses}/>
+			<CourseListResults user={user} setReduceMap={setReduceMap} reduceMap={reduceMap} courses={courses}/>
 
 			
 

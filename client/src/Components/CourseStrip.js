@@ -16,18 +16,14 @@ function CourseStrip({course, user}) {
 
     function handleEnrol() {
 
-
-
         const body = {
             courseId: course._id,
             userId: user.id
         }
-        // console.log(body)
 
         fetchPost('courses/enrol', body).then(response => {
 
             history.push('/app/mycourses')
-
 
         }).catch(err => alert(err))
 
@@ -47,22 +43,22 @@ function CourseStrip({course, user}) {
             </div>
             <div className="col-lg-7">
                 <div className="wrapper">
-                    {/* <a className="wish_bt" style={{left: 0}}>Add to my courses</a> */}
+                    
 
                     <h3><a>{course?.title}</a></h3>
                     <small>{course?.author}</small>
                     <p>{course?.description}</p>
 
                     
-                    <span className="loc_closed">Now Closed</span>
+
 
                 </div>
                 <ul>
-                    <li><a className="address" href={course?.site.link}>{course?.site.name}</a></li>
+                    <li><a style={{fontSize: '1rem'}} className="address" href={course?.site.link}>  View on {course?.site.name}</a></li>
 
                     
 
-                    <li><Button onClick={handleEnrol} variant="light">Take Course</Button></li>
+                    <li><Button onClick={handleEnrol} variant="light">Add to my courses</Button></li>
                 </ul>
             </div>
         </div>

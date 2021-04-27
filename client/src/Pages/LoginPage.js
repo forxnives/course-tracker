@@ -50,44 +50,44 @@ function LoginPage(props) {
     return (
 <div id="login_bg">
 	
-	<nav id="menu" class="fake_menu"></nav>
+	<nav id="menu" className="fake_menu"></nav>
 	
 	<div id="login">
 		<aside>
 			<figure style={{backgroundColor: '#003049'}} >
-				<a href="index.html"><img src="https://static.wixstatic.com/media/369c26_9b881804a868429db8fe1bb25c2bcf2b~mv2.png/v1/fill/w_172,h_34,al_c,q_85,usm_0.66_1.00_0.01/ADTLogo.webp" width="165" height="35" alt="" class="logo_sticky"/></a>
+				<a href="https://www.adtelligent.net/"><img src="https://static.wixstatic.com/media/369c26_9b881804a868429db8fe1bb25c2bcf2b~mv2.png/v1/fill/w_172,h_34,al_c,q_85,usm_0.66_1.00_0.01/ADTLogo.webp" width="165" height="35" alt="" className="logo_sticky"/></a>
 				<h5 style={{color: 'white', opacity: '40%'}}>Course Management System</h5>
 			</figure>
 			  <form onSubmit={(e)=>handleSubmit(e)}>
-				<div class="access_social">
-					<a href="#0" class="social_bt facebook">Login with Facebook</a>
-					<a href="#0" class="social_bt google">Login with Google</a>
-					<a href="#0" class="social_bt linkedin">Login with Linkedin</a>
+				<div className="access_social">
+					<a href="#0" className="social_bt facebook">Login with Facebook</a>
+					<a href="#0" className="social_bt google">Login with Google</a>
+					<a href="#0" className="social_bt linkedin">Login with Linkedin</a>
 				</div>
-				<div class="divider"><span>Or</span></div>
-				<div class="form-group">
+				<div className="divider"><span>Or</span></div>
+				<div className="form-group">
 					<label>Email</label>
-					<input onChange={(e)=>setEmail(e.target.value)} type="email" class="form-control" name="email" id="email"/>
-					<i class="icon_mail_alt"></i>
+					<input onChange={(e)=>setEmail(e.target.value)} type="email" className="form-control" name="email" id="email"/>
+					<i className="icon_mail_alt"></i>
 				</div>
-				<div class="form-group">
+				<div className="form-group">
 					<label>Password</label>
-					<input onChange={(e) => setPassword(e.target.value)} type="password" class="form-control" name="password" id="password" defaultValue=""/>
-					<i class="icon_lock_alt"></i>
+					<input onChange={(e) => setPassword(e.target.value)} type="password" className="form-control" name="password" id="password" defaultValue=""/>
+					<i className="icon_lock_alt"></i>
 				</div>
-				<div class="clearfix add_bottom_30">
-					<div class="checkboxes float-left">
-						<label class="container_check">Remember me
+				<div className="clearfix add_bottom_30">
+					<div className="checkboxes float-left">
+						<label className="container_check">Remember me
 						  <input type="checkbox"/>
-						  <span class="checkmark"></span>
+						  <span className="checkmark"></span>
 						</label>
 					</div>
-					<div class="float-right mt-1"><a id="forgot" href="javascript:void(0);">Forgot Password?</a></div>
+					<div className="float-right mt-1"><a id="forgot" href="javascript:void(0);">Forgot Password?</a></div>
 				</div>
-				<button type='submit'  class="btn_1 rounded full-width">Login Now</button>
-				<div class="text-center add_top_10">Are you new? <strong><Link to="/register">Register!</Link></strong></div>
+				<button type='submit'  className="btn_1 rounded full-width">Login Now</button>
+				<div className="text-center add_top_10">Are you new? <strong><Link to="/register">Register!</Link></strong></div>
 			</form>
-			<div class="copy">© 2021 Adtelligent</div>
+			<div className="copy">© 2021 Adtelligent</div>
 		</aside>
 	</div>
 

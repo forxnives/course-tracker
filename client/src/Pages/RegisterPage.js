@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Dropdown from 'react-dropdown';
 
 import {
 	BrowserRouter as Router,
@@ -17,13 +18,16 @@ function RegisterPage(props) {
 	const [lastName, setLastName] = useState('');
 	const [departmentId, setDepartmentId] = useState('');
 
-	const dpWebDev = '607cb63644e9b5b23b9d1dd8'
+
+
+	const dropdownOptions = props.departments.map(department => ({value: department._id, label: department.name}))
+	const defaultOption = dropdownOptions[0];
   
 	async function registerUser() {
 	  try{
 
 		const body = {
-		  email, password, firstName, lastName, departmentId:dpWebDev}
+		  email, password, firstName, lastName, departmentId:departmentId}
 
 
 	  
@@ -85,7 +89,7 @@ function RegisterPage(props) {
 	<div id="login">
 		<aside>
 		<figure style={{backgroundColor: '#003049'}} >
-				<a href="index.html"><img src="https://static.wixstatic.com/media/369c26_9b881804a868429db8fe1bb25c2bcf2b~mv2.png/v1/fill/w_172,h_34,al_c,q_85,usm_0.66_1.00_0.01/ADTLogo.webp" width="165" height="35" alt="" class="logo_sticky"/></a>
+				<a href="https://www.adtelligent.net/"><img src="https://static.wixstatic.com/media/369c26_9b881804a868429db8fe1bb25c2bcf2b~mv2.png/v1/fill/w_172,h_34,al_c,q_85,usm_0.66_1.00_0.01/ADTLogo.webp" width="165" height="35" alt="" class="logo_sticky"/></a>
 				<h5 style={{color: 'white', opacity: '40%'}}>Course Management System</h5>
 			</figure>
 			<form noValidate onSubmit={handleSubmit} autocomplete="off">
@@ -106,7 +110,8 @@ function RegisterPage(props) {
 				</div>
 				<div class="form-group">
 					<label>Department</label>
-					<input onChange={(e) => setDepartmentId(e.target.value)} class="form-control" type="text"/>
+					<Dropdown  options={dropdownOptions} onChange={(e) => setDepartmentId(e.value)} value={departmentId} placeholder="Select an option" />;
+					{/* <input onChange={(e) => setDepartmentId(e.target.value)} class="form-control" type="text"/> */}
 					<i class="icon_mail_alt"></i>
 				</div>
 				<div class="form-group">
