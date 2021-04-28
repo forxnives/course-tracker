@@ -64,15 +64,15 @@ function CourseListFilters({setReduceMap, reduceMap, keywords}) {
     return (
         <aside className="col-lg-3" id="sidebar">
         <div id="filters_col">
-            <a style={{cursor:'default'}} >Filters </a>
+            <a href="#0" style={{cursor:'default'}} >Filters </a>
             <div className="collapse show" id="collapseFilters">
                 <div className="filter_type">
                     <h6>Site</h6>
                     <ul>
 
                         {
-                            siteArray.map(site =>(
-                                <li>
+                            siteArray.map((site, i) =>(
+                                <li key={`site_${i}`}>
                                 <label className="container_check">{site} 
                                   <input onChange={(e) => handleSiteFilter(e, site)} type="checkbox"/>
                                   <span className="checkmark"></span>
@@ -93,8 +93,8 @@ function CourseListFilters({setReduceMap, reduceMap, keywords}) {
                     <h6>Top Keywords</h6>
                     <ul>
 
-                        {keywords.map(keyword => (
-                            <li>
+                        {keywords.map((keyword, i) => (
+                            <li key={`keyword_${i}`}>
                                 <label className="container_check">{titleCase(keyword[0])}<small>{keyword[1]}</small>
                                     <input onChange={(e) =>  handleKeywordFilter(e, keyword)}  type="checkbox"/>
                                     <span className="checkmark"></span>

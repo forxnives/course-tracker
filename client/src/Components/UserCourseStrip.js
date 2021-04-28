@@ -3,10 +3,6 @@ import {fetchPost} from '../utils/fetchUtils'
 import StarRatings from 'react-star-ratings';
 
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect,
     Link
   } from "react-router-dom";
 

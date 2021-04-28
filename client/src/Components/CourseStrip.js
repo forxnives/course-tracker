@@ -37,7 +37,7 @@ function CourseStrip({course, user}) {
         <div className="row no-gutters">
             <div className="col-lg-5">
                 <figure>
-                    <a ><img src={course?.image} className="img-fluid" alt=""/><div className="read_more"></div></a>
+                    <a href="#0"><img src={course?.image} className="img-fluid" alt=""/><div className="read_more"></div></a>
                     <small>{course?.department.name}</small>
                 </figure>
             </div>
@@ -45,7 +45,7 @@ function CourseStrip({course, user}) {
                 <div className="wrapper">
                     
 
-                    <h3><a>{course?.title}</a></h3>
+                    <h3><a href="#0">{course?.title}</a></h3>
                     <small>{course?.author}</small>
                     <p>{course?.description}</p>
 

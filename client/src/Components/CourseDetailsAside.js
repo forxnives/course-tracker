@@ -1,12 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {getRelated} from '../utils/generalUtils.js'
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useParams,
-    useRouteMatch,
     useHistory
   } from "react-router-dom";
 
@@ -33,7 +27,7 @@ function CourseDetailsAside({setForceUpdate, forceUpdate, course, courses, depar
         
         setRelated(sorted.slice(0,3))
 
-    }, [course] )
+    }, [course, courses] )
 
     function handleRelatedClick(courseId) {
         history.push(`/app/details/${courseId}`)
@@ -43,18 +37,6 @@ function CourseDetailsAside({setForceUpdate, forceUpdate, course, courses, depar
 
     function handleDeptClick(dept) {
 
-        // setReduceMap({
-        //         filters: {
-        //           dept: dept.name,
-        //           rating: null,
-        //           sites: [], 
-        //           keywords: []
-            
-        //         },
-        //         sort:  null,
-        //         search: null,
-        
-        // })
 
         setReduceMap({...defaultReduceMap, filters:{...defaultReduceMap, dept:dept.name}})
         history.push('/app/list')
@@ -86,10 +68,10 @@ function CourseDetailsAside({setForceUpdate, forceUpdate, course, courses, depar
 
                     <li key={`related_${i}`} style={{cursor: 'pointer'}} onClick={() => handleRelatedClick(course._id)}>
                         <div className="alignleft">
-                            <a><img src={course.image} alt=""/></a>
+                            <a href="#0"><img src={course.image} alt=""/></a>
                         </div>
                         <small>{course.site.name}</small>
-                        <h3><a title="">{course.title}</a></h3>
+                        <h3><a href="#0" title="">{course.title}</a></h3>
                     </li>
 
                 ))}
@@ -104,7 +86,7 @@ function CourseDetailsAside({setForceUpdate, forceUpdate, course, courses, depar
             <ul className="cats">
 
                 {departments.map((dept, i) =>(
-                    <li onClick={() => handleDeptClick(dept)} key={`department_${i}`}><a href="#">{dept.name} <span>({dept.courseIds.length})</span></a></li>
+                    <li onClick={() => handleDeptClick(dept)} key={`department_${i}`}><a href="#0">{dept.name} <span>({dept.courseIds.length})</span></a></li>
                 ))}
                 
             </ul>
@@ -118,7 +100,7 @@ function CourseDetailsAside({setForceUpdate, forceUpdate, course, courses, depar
 
                 {
                     [...course.keywords, ...course.topics].map((word, i) => (
-                        <a style={{cursor: 'pointer'}} onClick={() => handleWordClick(word)}>{word}</a>
+                        <a href="#0" style={{cursor: 'pointer'}} onClick={() => handleWordClick(word)}>{word}</a>
                     ))
                 }
 

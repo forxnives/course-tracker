@@ -34,13 +34,13 @@ function LoginPage(props) {
 		  if (!response.ok){
 			throw new Error(data.message);
 		  }
-		  console.log(data)
+
 		  props.setAccessToken(data.accessToken)
 		//   props.getUser();
 
 
 		} catch (err){
-		  setError(err.message);
+		  alert(err.message);
 		}
 	
 	  }
@@ -60,9 +60,9 @@ function LoginPage(props) {
 			</figure>
 			  <form onSubmit={(e)=>handleSubmit(e)}>
 				<div className="access_social">
-					<a href="#0" className="social_bt facebook">Login with Facebook</a>
-					<a href="#0" className="social_bt google">Login with Google</a>
-					<a href="#0" className="social_bt linkedin">Login with Linkedin</a>
+					<a href="#" className="social_bt facebook">Login with Facebook</a>
+					<a href="#" className="social_bt google">Login with Google</a>
+					<a href="#" className="social_bt linkedin">Login with Linkedin</a>
 				</div>
 				<div className="divider"><span>Or</span></div>
 				<div className="form-group">
@@ -82,7 +82,7 @@ function LoginPage(props) {
 						  <span className="checkmark"></span>
 						</label>
 					</div>
-					<div className="float-right mt-1"><a id="forgot" href="javascript:void(0);">Forgot Password?</a></div>
+					<div className="float-right mt-1"><a id="forgot" href="#">Forgot Password?</a></div>
 				</div>
 				<button type='submit'  className="btn_1 rounded full-width">Login Now</button>
 				<div className="text-center add_top_10">Are you new? <strong><Link to="/register">Register!</Link></strong></div>

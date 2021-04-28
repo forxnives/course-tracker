@@ -3,12 +3,13 @@ import SearchSection from '../Components/SearchSection'
 import Footer from '../Components/Footer.js'
 import {newCourse} from '../utils/fetchUtils'
 import {arrayConvert} from '../utils/generalUtils.js'
+// import Footer from '../Components/Footer.js'
 
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 
-function NewCoursePage({departments}) {
+function NewCoursePage({departments, user}) {
 
 
     const [courseTitle, setCourseTitle ] = useState('')
@@ -68,6 +69,13 @@ function NewCoursePage({departments}) {
 
 
     return (
+        <>
+
+<div className="sub_header_in sticky_header" style={{backgroundColor: 'rgb(0, 119, 184)'}}><div className="container"><h1>Add Course</h1></div></div>
+
+        <div className='container margin_60_35'>
+
+        
    
 
         <form onSubmit={(e) => handleSubmit(e)}>
@@ -120,6 +128,14 @@ function NewCoursePage({departments}) {
                 </div>
             </div>
         </form>
+
+        </div>
+
+        <Footer />
+
+        </>
+
+
             
     )
 }

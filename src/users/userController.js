@@ -40,7 +40,8 @@ exports.findUserById = async (id) => {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-      departmentId: user.departmentId
+      departmentId: user.departmentId,
+      isAdmin: user.isAdmin
     }
   } catch(e) {
     throw e;

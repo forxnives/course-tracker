@@ -1,19 +1,15 @@
 import React from 'react'
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link,
     useHistory,
-    useRouteMatch
   } from "react-router-dom";
 
 
 
-function Navbar({handleLogout, setReduceMap}) {
+function Navbar({handleLogout, setReduceMap, user}) {
 
   let history = useHistory()
-  let match = useRouteMatch()
+
 
 
   function handleAllCourses(){
@@ -41,9 +37,9 @@ function Navbar({handleLogout, setReduceMap}) {
 
 
     return (
-<nav class="navbar navbar-light" style={{backgroundColor: "#003049", margin: '0px', borderRadius: '0px', display: 'flex', justifyContent: 'space-between', alignContent: 'center'}}>
+<nav className="navbar navbar-light" style={{backgroundColor: "#003049", margin: '0px', borderRadius: '0px', display: 'flex', justifyContent: 'space-between', alignContent: 'center'}}>
 
-< Link to='/app/home' style={{display: 'flex', padding: '10px 10px 5px'}} class="navbar-brand" href="#">
+<Link to='/app/home' style={{display: 'flex', padding: '10px 10px 5px'}} className="navbar-brand" href="#">
   <img src="https://static.wixstatic.com/media/369c26_9b881804a868429db8fe1bb25c2bcf2b~mv2.png/v1/fill/w_172,h_34,al_c,q_85,usm_0.66_1.00_0.01/ADTLogo.webp" alt="" />
 </Link>
 
@@ -54,7 +50,16 @@ function Navbar({handleLogout, setReduceMap}) {
 
 <div  style={{display: 'flex', alignContent: 'center', marginLeft: 'auto', opacity: '90%'}} className='nav-links' > 
 
-    <a onClick={handleAllCourses} style={{display: 'flex', alignContent: 'center', padding: '0px 10px'}} className='nav-link'>
+    { 
+      user.isAdmin && (    
+        <Link to='/app/admin' style={{display: 'flex', alignContent: 'center', padding: '0px 10px'}} className='nav-link'>
+          <h4 style={{color: 'white', cursor: 'pointer', display: 'flex', paddingTop: '5px'}} >Admin</h4>
+        </Link>
+    )}
+
+
+
+    <a href="#0" onClick={handleAllCourses} style={{display: 'flex', alignContent: 'center', padding: '0px 10px'}} className='nav-link'>
       <h4 style={{color: 'white', cursor: 'pointer', display: 'flex', paddingTop: '5px'}} >All Courses</h4>
     </a>
 

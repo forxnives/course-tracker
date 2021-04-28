@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import UserCourseStrip from '../Components/UserCourseStrip.js'
-import SearchSection from '../Components/SearchSection'
 import Footer from '../Components/Footer.js'
+import Loading from '../Components/Loading.js'
 import {fetchPut} from '../utils/fetchUtils.js'
 
 function UserCourses({user}) {
 
-	const [userCourses, setUserCourses] = useState([])
+	const [userCourses, setUserCourses] = useState(null)
 	
 
 
@@ -40,10 +40,19 @@ function UserCourses({user}) {
 		<div className="container margin_60_35">
 			<div className="box_booking">
 
+			{
+				userCourses ? (!userCourses.length ? ('You have no courses!') : (
 
-			{userCourses.map((course, i)=> (            
+					userCourses.map((course, i)=> (            
 				<UserCourseStrip user={user} course={course} key={`course_${i}`} />
-			) )}
+			) )
+
+				)) :
+				(<Loading />)
+			}
+
+
+
 				
 			</div>
 

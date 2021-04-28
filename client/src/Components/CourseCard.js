@@ -4,9 +4,6 @@ import {fetchPost} from '../utils/fetchUtils.js'
 
 
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link,
     useHistory
   } from "react-router-dom";
@@ -40,7 +37,7 @@ function CourseCard({userId, course, index}) {
         <div  className="col-md-6">
         <div className="strip grid">
             <figure>
-                <Link onClick={handleEnrol} className="wish_bt">Add to my courses</Link>
+                <a href="#0" onClick={handleEnrol} className="wish_bt">Add to my courses</a>
                 
                 <Link to={`/app/details/${course._id}`}><img src={course.image} className="img-fluid" alt=""/>
                     <div className="read_more"><span>Read more</span></div>

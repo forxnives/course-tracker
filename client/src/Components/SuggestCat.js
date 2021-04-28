@@ -1,9 +1,6 @@
 import React from 'react'
 import { getReccomended } from '../utils/generalUtils'
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
   Link
 } from "react-router-dom";
 

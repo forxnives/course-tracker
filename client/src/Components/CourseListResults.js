@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import CourseListFilters from './CourseListFilters.js'
 import CourseCard from './CourseCard.js';
 import {getTopKeywords} from '../utils/generalUtils.js'

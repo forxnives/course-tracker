@@ -1,11 +1,6 @@
 import React from 'react'
 import Search from './Search.js'
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useParams,
     useRouteMatch
   } from "react-router-dom";
 

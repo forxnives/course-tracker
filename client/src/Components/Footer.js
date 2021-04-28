@@ -14,7 +14,7 @@ function Footer() {
                   <li><a href="#0">Help</a></li>
                   <li><a href="#0">My account</a></li>
                   <li><a href="#0">Create account</a></li>
-                  <li><a href="#0">Contacts</a></li>
+                  
                 </ul>
               </div>
             </div>
@@ -22,12 +22,11 @@ function Footer() {
               <h3 data-target="#collapse_ft_2">Categories</h3>
               <div className="collapse dont-collapse-sm" id="collapse_ft_2">
                 <ul className="links">
-                  <li><a href="#0">Shops</a></li>
-                  <li><a href="#0">Hotels</a></li>
-                  <li><a href="#0">Restaurants</a></li>
-                  <li><a href="#0">Bars</a></li>
-                  <li><a href="#0">Events</a></li>
-                  <li><a href="#0">Fitness</a></li>
+                  <li><a href="#0">Video Editing</a></li>
+                  <li><a href="#0">Graphic Design</a></li>
+                  <li><a href="#0">Digital Advertising</a></li>
+                  <li><a href="#0">Web Development</a></li>
+
                 </ul>
               </div>
             </div>
@@ -35,9 +34,9 @@ function Footer() {
               <h3 data-target="#collapse_ft_3">Contacts</h3>
               <div className="collapse dont-collapse-sm" id="collapse_ft_3">
                 <ul className="contacts">
-                  <li><i className="ti-home"></i>97845 Baker st. 567<br/>Los Angeles - US</li>
+                  <li><i className="ti-home"></i>4 Sylvan Avenue<br/>Kingston 5 - Jamaica</li>
                   <li><i className="ti-headphone-alt"></i>+39 06 97240120</li>
-                  <li><i className="ti-email"></i><a href="#0">info@sparker.com</a></li>
+                  <li><i className="ti-email"></i><a href="#0">info@adtelligent.com</a></li>
                 </ul>
               </div>
             </div>

@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useCallback} from 'react'
 import './style.css';
-import Home from './Pages/Home.js'
 import HomePage from './Pages/HomePage.js'
 import CourseListPage from './Pages/CourseListPage.js'
 import CourseDetailsPage from './Pages/CourseDetailsPage.js'
@@ -21,7 +20,6 @@ import {
   Switch,
   Route,
   Redirect,
-  Link
 } from "react-router-dom";
 
 
@@ -37,8 +35,8 @@ function App() {
   const [ reducedCourses, setReducedCourses ] = useState([])
   const [ departments, setDepartments ] = useState([])
   const [ error, setError ] = useState(null)
-  const [ selectedCourse, setSelectedCourse ] = useState(null)
-  const [selectedDept, setSelectedDept] = useState(null)
+  
+  
 
   const [ reduceMap, setReduceMap ] = useState({
     filters: {
@@ -80,7 +78,7 @@ function App() {
     setReducedCourses(tempCourses)
 
 
-  },[reduceMap])
+  },[reduceMap, courses])
 
 
   
@@ -146,7 +144,7 @@ function App() {
     }
     
     
-  }, [accessToken])
+  }, [accessToken, getUser])
   
   
   useEffect(() => {
@@ -164,8 +162,7 @@ function App() {
     
   }
   
-  
-  
+
   
   return (
     <div className="App">
@@ -211,7 +208,7 @@ function App() {
             
             >
 
-              { user && (<Navbar setReduceMap={setReduceMap} handleLogout={handleLogout} />)}
+              { user && (<Navbar user={user} setReduceMap={setReduceMap} handleLogout={handleLogout} />)}
 
               <Switch>
 
@@ -220,9 +217,10 @@ function App() {
 
               <Route path='/app/home'
             render={props => {
+
               if (user) {
 
-                return<HomePage user={user} reduceMap={reduceMap} setReduceMap={setReduceMap} courses={courses}  departments={departments} />
+                return <HomePage user={user} reduceMap={reduceMap} setReduceMap={setReduceMap} courses={courses}  departments={departments} />
               }
 
               return <LoginPage getUser={getUser} setAccessToken={setAccessToken} {...props} />;
@@ -284,9 +282,13 @@ function App() {
             
             path="/app/admin"
             render={props => {
-              if (user) {
+              if (user && user.isAdmin) {
                 
                 return <NewCoursePage departments={departments} />
+              }
+
+              if (user){
+                return <HomePage user={user} reduceMap={reduceMap} setReduceMap={setReduceMap} courses={courses}  departments={departments} />
               }
 
               return <LoginPage getUser={getUser} setAccessToken={setAccessToken} {...props} />;

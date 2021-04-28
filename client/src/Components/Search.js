@@ -7,17 +7,13 @@ function Search({departments, reduceMap, setReduceMap}) {
     let history = useHistory();
 
     const [dropDownToggle, setDropDownToggle] = useState(false)
-  
-    const [ searchInput, setSearchInput ] = useState('')
-  
-  
+     
   
   
     function handleDeptClick(dept) {
   
       setReduceMap({...reduceMap, filters: {...reduceMap.filters, dept: dept}})
       setDropDownToggle(false)
-  
     }
   
     function handleKeypress (e) {

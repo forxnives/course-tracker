@@ -2,10 +2,6 @@ import React, {useState} from 'react'
 import Dropdown from 'react-dropdown';
 
 import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Redirect,
 	Link
   } from "react-router-dom";
 

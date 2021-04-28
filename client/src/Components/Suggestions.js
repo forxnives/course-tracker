@@ -19,7 +19,7 @@ function Suggestions({courses, deptId}) {
 
         
 
-    }, [courses])
+    }, [courses, deptId])
 
 
 

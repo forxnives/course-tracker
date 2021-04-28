@@ -77,14 +77,14 @@ router.route('/login').post(async (req, res) => {
     // from userController
     const user = await findUserByEmail(email);
     if (!user) {
-      res.status(401).json({ message: "password and email do not match"});
+      res.status(401).json({ message: "Check fields and try again"});
       return;
     }
     // from userModel
     // does the password match the hash from the db?
     const isMatch = await user.comparePasswords(password);
     if (!isMatch) {
-      res.status(400).json({ message: 'password and email do not match'});
+      res.status(400).json({ message: 'Check fields and try again'});
       return;
     }
     // argument here will be the PAYLOAD of the token:
@@ -114,19 +114,10 @@ router.route('/login').post(async (req, res) => {
 
 router.use(verifyToken).route('/me').post(async (req, res) => {
 
-  // router.route('/me').post(async (req, res) => {
+
 
   try {
 
-    // console.log(req.body.token)
-    //  const { cookies } = req;
-    // if(!cookies || !cookies.token) {
-    //     res.status(403).json({ message: 'authorization required '});
-    //     return;
-    // }
-    // const token = cookies.token;
-    // const userToken = await verifyToken(token);
-    // const user = await findUserById(userToken.id);
     
     const user = await findUserById(req.user.id);
     res.json({ data: user });
