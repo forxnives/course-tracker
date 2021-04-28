@@ -1,6 +1,77 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import {getRelated} from '../utils/generalUtils.js'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams,
+    useRouteMatch,
+    useHistory
+  } from "react-router-dom";
 
-function CourseDetailsAside() {
+function CourseDetailsAside({setForceUpdate, forceUpdate, course, courses, departments, reduceMap, setReduceMap}) {
+
+    const history = useHistory()
+    const [ related, setRelated ] = useState([])
+    const defaultReduceMap = {
+        filters: {
+          dept: null,
+          rating: null,
+          sites: [], 
+          keywords: []
+    
+        },
+        sort:  null,
+        search: null,
+
+}
+
+    useEffect(() => {
+
+        const sorted = getRelated(course, courses)
+        
+        setRelated(sorted.slice(0,3))
+
+    }, [course] )
+
+    function handleRelatedClick(courseId) {
+        history.push(`/app/details/${courseId}`)
+        setForceUpdate(!forceUpdate)
+
+    }
+
+    function handleDeptClick(dept) {
+
+        // setReduceMap({
+        //         filters: {
+        //           dept: dept.name,
+        //           rating: null,
+        //           sites: [], 
+        //           keywords: []
+            
+        //         },
+        //         sort:  null,
+        //         search: null,
+        
+        // })
+
+        setReduceMap({...defaultReduceMap, filters:{...defaultReduceMap, dept:dept.name}})
+        history.push('/app/list')
+    }
+    
+
+    function handleWordClick(word) {
+        setReduceMap({
+            ...defaultReduceMap,
+            search: word
+        }) 
+
+        history.push('/app/list')
+    }
+
+
+
     return (
         <aside className="col-lg-3">
 
@@ -10,27 +81,19 @@ function CourseDetailsAside() {
                 <h4>Related Courses</h4>
             </div>
             <ul className="comments-list">
-                <li>
-                    <div className="alignleft">
-                        <a href="#0"><img src="img/blog-5.jpg" alt=""/></a>
-                    </div>
-                    <small>Category - 11.08.2016</small>
-                    <h3><a href="#" title="">Verear qualisque ex minimum...</a></h3>
-                </li>
-                <li>
-                    <div className="alignleft">
-                        <a href="#0"><img src="img/blog-6.jpg" alt=""/></a>
-                    </div>
-                    <small>Category - 11.08.2016</small>
-                    <h3><a href="#" title="">Verear qualisque ex minimum...</a></h3>
-                </li>
-                <li>
-                    <div className="alignleft">
-                        <a href="#0"><img src="img/blog-4.jpg" alt=""/></a>
-                    </div>
-                    <small>Category - 11.08.2016</small>
-                    <h3><a href="#" title="">Verear qualisque ex minimum...</a></h3>
-                </li>
+
+                {related.map((course, i) => (
+
+                    <li key={`related_${i}`} style={{cursor: 'pointer'}} onClick={() => handleRelatedClick(course._id)}>
+                        <div className="alignleft">
+                            <a><img src={course.image} alt=""/></a>
+                        </div>
+                        <small>{course.site.name}</small>
+                        <h3><a title="">{course.title}</a></h3>
+                    </li>
+
+                ))}
+
             </ul>
         </div>
 
@@ -39,10 +102,11 @@ function CourseDetailsAside() {
                 <h4>Departments</h4>
             </div>
             <ul className="cats">
-                <li><a href="#">Food <span>(12)</span></a></li>
-                <li><a href="#">Places to visit <span>(21)</span></a></li>
-                <li><a href="#">New Places <span>(44)</span></a></li>
-                <li><a href="#">Suggestions and guides <span>(31)</span></a></li>
+
+                {departments.map((dept, i) =>(
+                    <li onClick={() => handleDeptClick(dept)} key={`department_${i}`}><a href="#">{dept.name} <span>({dept.courseIds.length})</span></a></li>
+                ))}
+                
             </ul>
         </div>
 
@@ -51,13 +115,14 @@ function CourseDetailsAside() {
                 <h4>Keywords</h4>
             </div>
             <div className="tags">
-                <a href="#">Food</a>
-                <a href="#">Bars</a>
-                <a href="#">Cooktails</a>
-                <a href="#">Shops</a>
-                <a href="#">Best Offers</a>
-                <a href="#">Transports</a>
-                <a href="#">Restaurants</a>
+
+                {
+                    [...course.keywords, ...course.topics].map((word, i) => (
+                        <a style={{cursor: 'pointer'}} onClick={() => handleWordClick(word)}>{word}</a>
+                    ))
+                }
+
+
             </div>
         </div>
 

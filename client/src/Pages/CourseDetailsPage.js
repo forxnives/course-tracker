@@ -20,7 +20,7 @@ import {
   } from "react-router-dom";
 
 
-function CourseDetailsPage({courses=[], user} ) {
+function CourseDetailsPage({courses=[], user, departments,  reduceMap, setReduceMap} ) {
 
     let {params} = useRouteMatch();
 
@@ -105,7 +105,7 @@ function CourseDetailsPage({courses=[], user} ) {
 
                         </div>
 
-                        <CourseDetailsAside />
+                        <CourseDetailsAside reduceMap={reduceMap} setReduceMap={setReduceMap} forceUpdate={forceUpdate} setForceUpdate={setForceUpdate} departments={departments} course={course} courses={courses} />
  
                         
      

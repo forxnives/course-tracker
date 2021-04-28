@@ -1,9 +1,12 @@
 import React, {useState} from 'react'
 import {titleCase} from '../utils/generalUtils.js'
 
+
+
 function CourseListFilters({setReduceMap, reduceMap, keywords}) {
 
     const [ sliderValue, setSliderValue ] = useState(0)
+
     
 
     const siteArray = ['Udemy', 'Coursera', 'Skillshare', 'Youtube']
@@ -21,7 +24,7 @@ function CourseListFilters({setReduceMap, reduceMap, keywords}) {
 
 
         if (e.target.checked){
-            setReduceMap({...reduceMap, filters: {...reduceMap.filters, sites: [...reduceMap.filters.sites, site]}})
+            setReduceMap({...reduceMap, filters: {...reduceMap.filters, sites: [...reduceMap.filters?.sites, site]}})
         }else {
 
             let index = reduceMap.filters.sites.indexOf(site)

@@ -8,6 +8,7 @@ import UserCoursesPage from './Pages/UserCoursesPage.js'
 import LoginPage from './Pages/LoginPage.js'
 import RegisterPage from './Pages/RegisterPage.js'
 import NewCoursePage from './Pages/NewCoursePage';
+import ScrollToTop from './Components/ScrollToTop.js';
 import {fetchGet} from './utils/fetchUtils.js'
 import { ratingCalc } from './utils/ratingUtils.js'
 import {useLocalStorageState} from './utils/hooks.js'
@@ -170,6 +171,7 @@ function App() {
     <div className="App">
 
       <Router>
+        <ScrollToTop />
         <Switch>
           <Route 
             exact  
@@ -209,7 +211,7 @@ function App() {
             
             >
 
-              { user && (<Navbar handleLogout={handleLogout} />)}
+              { user && (<Navbar setReduceMap={setReduceMap} handleLogout={handleLogout} />)}
 
               <Switch>
 
@@ -254,7 +256,7 @@ function App() {
             render={props => {
               if (user) {
                 
-                return <CourseDetailsPage user={user} courses={courses} />
+                return <CourseDetailsPage reduceMap={reduceMap} setReduceMap={setReduceMap} departments={departments} user={user} courses={courses} />
               }
 
               return <LoginPage getUser={getUser} setAccessToken={setAccessToken} {...props} />;

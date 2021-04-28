@@ -3,12 +3,43 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
+    useHistory,
+    useRouteMatch
   } from "react-router-dom";
 
 
 
-function Navbar({handleLogout}) {
+function Navbar({handleLogout, setReduceMap}) {
+
+  let history = useHistory()
+  let match = useRouteMatch()
+
+
+  function handleAllCourses(){
+    setReduceMap({
+
+        filters: {
+          dept: null,
+          rating: null,
+          sites: [], 
+          keywords: []
+    
+        },
+        sort:  null,
+        search: null,
+    
+
+    })
+
+    if (history.location.pathname === '/app/list' ){
+      window.location.reload()
+    }
+
+    history.push('/app/list')
+  } 
+
+
     return (
 <nav class="navbar navbar-light" style={{backgroundColor: "#003049", margin: '0px', borderRadius: '0px', display: 'flex', justifyContent: 'space-between', alignContent: 'center'}}>
 
@@ -23,9 +54,9 @@ function Navbar({handleLogout}) {
 
 <div  style={{display: 'flex', alignContent: 'center', marginLeft: 'auto', opacity: '90%'}} className='nav-links' > 
 
-    <Link to='/app/list' style={{display: 'flex', alignContent: 'center', padding: '0px 10px'}} className='nav-link'>
+    <a onClick={handleAllCourses} style={{display: 'flex', alignContent: 'center', padding: '0px 10px'}} className='nav-link'>
       <h4 style={{color: 'white', cursor: 'pointer', display: 'flex', paddingTop: '5px'}} >All Courses</h4>
-    </Link>
+    </a>
 
     <Link to='/app/mycourses' style={{display: 'flex', alignContent: 'center', padding: '0px 10px'}} className='nav-link'>
       <h4 style={{color: 'white', cursor: 'pointer', display: 'flex', paddingTop: '5px'}} >My Courses</h4>

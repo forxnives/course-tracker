@@ -167,9 +167,6 @@ export function getRecommended(courses, deptId  ) {
 
 function trendCalc(startTimes) {
 
-
-  // console.log(course)
-
   if (startTimes.length){
 
     const now = new Date()
@@ -184,22 +181,69 @@ function trendCalc(startTimes) {
     return avgTimeBetween * timeSinceLast
 
   }
-
-
-
-
 }
 
 
 export function getTrending(courses) {
 
-  // console.log(courses)
-
   const trending = [...courses].sort((a, b) => {
-    return trendCalc(b.last10StartTimes) - trendCalc(a.last10StartTimes)
+    return trendCalc(a.last10StartTimes) - trendCalc(b.last10StartTimes)
   })
 
   return trending
+}
+
+export function getRelated(course, courses) {
+
+  for (let i=0; i<courses.length;i++){
+
+    //continue if its the same course
+    if (courses[i]._id === course._id){
+      courses[i].similarity = -1
+      continue
+    }
+    
+    let similarity = 0
+
+    //points for same department
+    if (courses[i].department.name === course.department.name){
+      similarity =+ 10
+    }
+
+
+    //points for same topics
+
+    similarity = similarity + course.topics.reduce((accumulator, topic) => {
+      if (courses[i].topics.includes(topic)){
+
+        return accumulator + 8
+      }
+
+      return accumulator
+    },0)
+
+
+    //points for same keywords
+
+    similarity = similarity + course.keywords.reduce((accumulator, keyword) => {
+      if (courses[i].keywords.includes(keyword)){
+
+        return accumulator + 6
+      }
+
+      return accumulator
+    },0)
+
+
+    courses[i].similarity = similarity
+
+
+  }
+
+
+  return courses.sort((a, b) => (
+    b.similarity - a.similarity
+  ))
 }
 
 
