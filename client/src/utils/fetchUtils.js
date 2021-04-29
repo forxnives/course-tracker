@@ -5,7 +5,7 @@
 
 export async function fetchGet (route) {
 
-    const response = await fetch(`http://localhost:8082/${route}`, {
+    const response = await fetch(`${window.location.origin}/${route}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export async function fetchGet (route) {
 //add course (takes course object)
 export async function newCourse (course) {
 
-    const response = await fetch(`http://localhost:8082/courses`, {
+    const response = await fetch(`${window.location.origin}/courses`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export async function newCourse (course) {
 }
 
 export async function fetchPost (route, body) {
-    const response = await fetch(`http://localhost:8082/${route}`, {
+    const response = await fetch(`${window.location.origin}/${route}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ export async function fetchPost (route, body) {
 }
 
 export async function fetchPut (route, body) {
-    const response = await fetch(`http://localhost:8082/${route}`, {
+    const response = await fetch(`${window.location.origin}/${route}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',

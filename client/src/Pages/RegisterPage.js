@@ -31,7 +31,7 @@ function RegisterPage(props) {
 
 
 	  
-		const response = await fetch ('http://localhost:8082/users', {
+		const response = await fetch (`${window.location.origin}/users`, {
 		  method: 'POST',
 		  headers: {
 			'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ function RegisterPage(props) {
 		  throw new Error (data.message);
 		}
   
-		const loginResponse = await fetch('http://localhost:8082/users/login', {
+		const loginResponse = await fetch(`${window.location.origin}/users/login`, {
 		  method: 'POST',
 		  headers: {
 			'Content-Type': 'application/json'

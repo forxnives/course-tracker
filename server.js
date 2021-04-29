@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser');
+const path = require("path")
 
 const coursesRouter = require('./src/courses/coursesRouter');
 const departmentRouter = require('./src/departments/departmentRouter');
@@ -9,6 +10,7 @@ const userRouter = require('./src/users/userRouter')
 const cors = require('cors');
 
 const connectDB = require('./config/db');
+require("dotenv").config()
 
 const port = process.env.PORT || 8082;  
 
@@ -28,6 +30,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 
+app.use(express.static(path.join(__dirname, "client", "build")))
 
 
 app.use('/courses', coursesRouter);
@@ -41,7 +44,9 @@ app.use('/users', userRouter)
 
 
 
-
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 
 connectDB().then(() => {
