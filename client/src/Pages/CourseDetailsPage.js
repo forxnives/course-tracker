@@ -49,10 +49,7 @@ function CourseDetailsPage({courses=[], user, departments,  reduceMap, setReduce
         
         <main>	
 
-            {/* <SearchSection />	 */}
-
-
-            
+                        
             <nav style={{backgroundColor: '#0077B8'}} className="secondary_nav sticky_horizontal_2">
                 <div className="container">
                     <ul className="clearfix">
@@ -87,7 +84,7 @@ function CourseDetailsPage({courses=[], user, departments,  reduceMap, setReduce
 
 
                                 {
-                                    course.comments.map(comment => (<ReviewComment comment={comment} />))
+                                    course.comments.map((comment,i) => (<ReviewComment key={`comment_${i}`} comment={comment} />))
                                 }
 
 

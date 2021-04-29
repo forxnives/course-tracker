@@ -14,6 +14,8 @@ function CourseListFilters({setReduceMap, reduceMap, keywords}) {
 
     function handleRatingSlider(e) {
 
+
+
         setReduceMap({...reduceMap, filters: {...reduceMap.filters, rating: e.target.valueAsNumber/2}})
         setSliderValue(e.target.valueAsNumber/2)
         
@@ -24,7 +26,10 @@ function CourseListFilters({setReduceMap, reduceMap, keywords}) {
 
 
         if (e.target.checked){
-            setReduceMap({...reduceMap, filters: {...reduceMap.filters, sites: [...reduceMap.filters?.sites, site]}})
+            
+
+            setReduceMap({...reduceMap, filters: {...reduceMap?.filters, sites: [...reduceMap.filters?.sites, site]}})
+
         }else {
 
             let index = reduceMap.filters.sites.indexOf(site)

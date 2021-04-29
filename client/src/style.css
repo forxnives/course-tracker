@@ -872,7 +872,7 @@ header.header_in ul#top_menu li a {
 } */
 @media (max-width: 991px) {
   .sub_header_in.sticky_header {
-    margin-top: 48px;
+    /* margin-top: 48px; */
   }
 }
 .sub_header_in h1 {
@@ -8301,3 +8301,55 @@ article.blog .post_info ul li:last-child i {
   font-family: 'Oswald', sans-serif;
 
 }
+
+.upper_nav{
+  display: flex;
+  justify-content: space-between; 
+  align-content: center;
+}
+
+.ratingcontainer{
+  padding-left: 65px;
+}
+
+
+@media screen and (max-width: 1200px) {
+  .lowerstripcontainer{
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+  }
+}
+
+
+@media only screen and (max-width: 989px) {
+
+  .usercoursepic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  
+}
+
+@media only screen and (max-width: 740px) {
+  .upper_nav{
+    display: block;
+
+  }
+}
+
+  @media only screen and (max-width: 600px) {
+
+    .strip_booking h3 {
+      padding-left: 0px;
+    }
+
+    .ratingcontainer{
+      padding-left: 0px;
+    }
+}
+
+

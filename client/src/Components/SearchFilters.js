@@ -6,7 +6,7 @@ function SearchFilters({setReduceMap, reduceMap}) {
 
 	useEffect(()=> {
 		setReduceMap({...reduceMap, sort: sortMode})
-	},[sortMode, reduceMap, setReduceMap])
+	},[sortMode])
 
 	
     return (

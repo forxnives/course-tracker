@@ -85,7 +85,7 @@ function UserCourseStrip({course, user}) {
             <div className="col-lg-2 col-md-2">
 
            
-                <figure>
+                <figure className='usercoursepic'>
                     <Link to={`/app/details/${course._id}`} ><img style={{maxWidth: '200px'}}  src={course?.image} className="img-fluid" alt=""/><div className="read_more"></div></Link>
                 </figure>
            
@@ -97,7 +97,7 @@ function UserCourseStrip({course, user}) {
 
 
                 <h3>Rating</h3>
-                <div style={{paddingLeft: '65px'}} >
+                <div className='ratingcontainer' >
 
                     <StarRatings 
                         rating={rating || course.userRating}

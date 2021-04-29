@@ -259,5 +259,16 @@ export function arrayConvert(string) {
   return string.split(',')
 }
 
+export const defaultReduceMap = {
+  filters: {
+    dept: null,
+    rating: null,
+    sites: [], 
+    keywords: []
 
+  },
+  sort:  null,
+  search: null,
+
+}
 

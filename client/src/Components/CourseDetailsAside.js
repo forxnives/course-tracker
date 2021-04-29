@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {getRelated} from '../utils/generalUtils.js'
+import {getRelated, defaultReduceMap} from '../utils/generalUtils.js'
 import {
     useHistory
   } from "react-router-dom";
@@ -8,18 +8,7 @@ function CourseDetailsAside({setForceUpdate, forceUpdate, course, courses, depar
 
     const history = useHistory()
     const [ related, setRelated ] = useState([])
-    const defaultReduceMap = {
-        filters: {
-          dept: null,
-          rating: null,
-          sites: [], 
-          keywords: []
-    
-        },
-        sort:  null,
-        search: null,
 
-}
 
     useEffect(() => {
 
@@ -38,7 +27,7 @@ function CourseDetailsAside({setForceUpdate, forceUpdate, course, courses, depar
     function handleDeptClick(dept) {
 
 
-        setReduceMap({...defaultReduceMap, filters:{...defaultReduceMap, dept:dept.name}})
+        setReduceMap({...defaultReduceMap, filters:{...defaultReduceMap.filters, dept:dept.name}})
         history.push('/app/list')
     }
     
@@ -100,7 +89,7 @@ function CourseDetailsAside({setForceUpdate, forceUpdate, course, courses, depar
 
                 {
                     [...course.keywords, ...course.topics].map((word, i) => (
-                        <a href="#0" style={{cursor: 'pointer'}} onClick={() => handleWordClick(word)}>{word}</a>
+                        <a key={`word_${i}`} href="#0" style={{cursor: 'pointer'}} onClick={() => handleWordClick(word)}>{word}</a>
                     ))
                 }
 

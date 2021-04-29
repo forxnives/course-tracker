@@ -24,7 +24,7 @@ function CourseListResults({courses, setReduceMap, reduceMap, user} = {courses:[
 
 					</div>
 
-					<p className="text-center"><a href="#0" className="btn_1 rounded add_top_30">Load more</a></p>
+					<p className="text-center"></p>
 				</div>
 
 			</div>		

@@ -17,10 +17,14 @@ function RegisterPage(props) {
 
 
 	const dropdownOptions = props.departments.map(department => ({value: department._id, label: department.name}))
-	const defaultOption = dropdownOptions[0];
+
   
 	async function registerUser() {
 	  try{
+
+		if (password !== password2){
+			throw new Error(`Passwords don't match`)
+		}
 
 		const body = {
 		  email, password, firstName, lastName, departmentId:departmentId}
@@ -59,7 +63,7 @@ function RegisterPage(props) {
 
   
 	  } catch(err){
-		console.log(err);
+		alert(err);
 		props.updateUser(undefined);
 	  }
 	}

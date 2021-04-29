@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import SearchSection from '../Components/SearchSection'
 import Footer from '../Components/Footer.js'
 import {newCourse} from '../utils/fetchUtils'
 import {arrayConvert} from '../utils/generalUtils.js'

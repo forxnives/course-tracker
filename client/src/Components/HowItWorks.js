@@ -8,13 +8,13 @@ function HowItWorks() {
               <div className="main_title_2">
                 <span><em></em></span>
                 <h2>How it Works</h2>
-                <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+                <p>Lorem doctus civibus efficiantur in imperdiet deterruisset.</p>
               </div>
               <div className="row">
                 <div className="col-md-4">
                   <div className="box_how">
                     <i className="pe-7s-search"></i>
-                    <h3>Search Locations</h3>
+                    <h3>Search Courses</h3>
                     <p>An nec placerat repudiare scripserit, temporibus complectitur at sea, vel ignota fierent eloquentiam id.</p>
                     <span></span>
                   </div>
@@ -22,7 +22,7 @@ function HowItWorks() {
                 <div className="col-md-4">
                   <div className="box_how">
                     <i className="pe-7s-info"></i>
-                    <h3>View Location Info</h3>
+                    <h3>Comment and Rate</h3>
                     <p>An nec placerat repudiare scripserit, temporibus complectitur at sea, vel ignota fierent eloquentiam id.</p>
                     <span></span>
                   </div>
@@ -30,7 +30,7 @@ function HowItWorks() {
                 <div className="col-md-4">
                   <div className="box_how">
                     <i className="pe-7s-like2"></i>
-                    <h3>Book, Reach or Call</h3>
+                    <h3>Track your Progress</h3>
                     <p>An nec placerat repudiare scripserit, temporibus complectitur at sea, vel ignota fierent eloquentiam id.</p>
                   </div>
                 </div>

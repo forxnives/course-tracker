@@ -53,7 +53,7 @@ function CourseStrip({course, user}) {
 
 
                 </div>
-                <ul>
+                <ul className='lowerstripcontainer' >
                     <li><a style={{fontSize: '1rem'}} className="address" href={course?.site.link}>  View on {course?.site.name}</a></li>
 
                     

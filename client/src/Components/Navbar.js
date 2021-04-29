@@ -37,18 +37,21 @@ function Navbar({handleLogout, setReduceMap, user}) {
 
 
     return (
-<nav className="navbar navbar-light" style={{backgroundColor: "#003049", margin: '0px', borderRadius: '0px', display: 'flex', justifyContent: 'space-between', alignContent: 'center'}}>
+<nav className="navbar navbar-light upper_nav" style={{backgroundColor: "#003049", margin: '0px', borderRadius: '0px'}}>
 
-<Link to='/app/home' style={{display: 'flex', padding: '10px 10px 5px'}} className="navbar-brand" href="#">
-  <img src="https://static.wixstatic.com/media/369c26_9b881804a868429db8fe1bb25c2bcf2b~mv2.png/v1/fill/w_172,h_34,al_c,q_85,usm_0.66_1.00_0.01/ADTLogo.webp" alt="" />
-</Link>
+<div style={{display: 'flex', justifyContent: 'space-between', alignContent: 'center'}} >
+  <Link to='/app/home' style={{display: 'flex', padding: '10px 10px 5px'}} className="navbar-brand" href="#">
+    <img className='adtelligent_logo' src="https://static.wixstatic.com/media/369c26_9b881804a868429db8fe1bb25c2bcf2b~mv2.png/v1/fill/w_172,h_34,al_c,q_85,usm_0.66_1.00_0.01/ADTLogo.webp" alt="" />
+  </Link>
 
 
-<div style={{display: 'flex', alignItems: 'flex-end'}}>
-   <h5 className='nav-cms-header' style={{color: 'white', letterSpacing: '3px', opacity: '30%', padding: '2px 0px'}}>Course Management System</h5> 
+  <div style={{display: 'flex', alignItems: 'flex-end'}}>
+    <h5 className='nav-cms-header' style={{color: 'white', letterSpacing: '3px', opacity: '30%', padding: '2px 0px'}}>Course Management System</h5> 
+  </div>
+
 </div>
 
-<div  style={{display: 'flex', alignContent: 'center', marginLeft: 'auto', opacity: '90%'}} className='nav-links' > 
+<div  style={{display: 'flex', alignContent: 'center', justifyContent: 'center', marginLeft: 'auto', opacity: '90%'}} className='nav-links' > 
 
     { 
       user.isAdmin && (    

@@ -5,7 +5,7 @@ function ReviewComment({comment}) {
 
     return (
         <div className="review-box clearfix">
-        <figure className="rev-thumb"><img src="img/avatar1.jpg" alt=""/>
+        <figure className="rev-thumb"><img src="https://lh3.googleusercontent.com/proxy/aZxN3ekZAwEeUM8pDVdc-THZNmF7dhsMbSV72SRqwjYTJGEpmZ_9bog4VfbbJWb4HkiNDQyoGDiG_AmWPTe_yXwP8ZUcCTe7KEbwp46VDk6bC6974wTILNraeqv2OzORIuMvo0Fv7zR3e62WcF6Nw4zsES5B1N9u" alt=""/>
         </figure>
         <div className="rev-content">
             <div className="rating">

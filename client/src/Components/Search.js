@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import { useHistory } from "react-router-dom";
-import {OutsideAlerter} from '../utils/hooks.js'
+import {OutsideAlerter} from '../utils/hooks.js';
+import {defaultReduceMap} from '../utils/generalUtils.js'
+
 
 function Search({departments, reduceMap, setReduceMap}) {
 
@@ -15,8 +17,15 @@ function Search({departments, reduceMap, setReduceMap}) {
       setReduceMap({...reduceMap, filters: {...reduceMap.filters, dept: dept}})
       setDropDownToggle(false)
     }
+
+    function handleAllClick(){
+
+      setReduceMap({...reduceMap, filters:{...reduceMap.filters, dept: null}})
+      setDropDownToggle(false)
+
+    }
   
-    function handleKeypress (e) {
+    function handleEnterKey (e) {
       //it triggers by pressing the enter key
       // console.log(e.charC)
     if (e.charCode === 13) {
@@ -32,7 +41,7 @@ function Search({departments, reduceMap, setReduceMap}) {
           <div className="row">
             <div className="col-md-12">
                     <div className="input-group" id="adv-search">
-                        <input onKeyPress={(e) => handleKeypress(e)} value={reduceMap?.search ? (reduceMap.search): ('')} onChange={(e)=> setReduceMap({...reduceMap, search:e.target.value})} type="text" className="form-control search-input" placeholder="Search for courses" />
+                        <input onKeyPress={(e) => handleEnterKey(e)} value={reduceMap?.search ? (reduceMap.search): ('')} onChange={(e)=> setReduceMap({...reduceMap, search:e.target.value})} type="text" className="form-control search-input" placeholder="Search for courses" />
                         <div className="input-group-btn">
                             <div className="btn-group" role="group">
                             <OutsideAlerter setDropDownToggle={setDropDownToggle} >
@@ -41,6 +50,8 @@ function Search({departments, reduceMap, setReduceMap}) {
 
                                     <div style={{display: dropDownToggle ? ('block'): ('none') }} className='customDropdown'>
 
+
+                                      <div key={'dept-1'} className='dropdown-dept' onClick={handleAllClick} style={{cursor: 'pointer'}}><h5 style={{padding: '5px 10px', margin: '0px'}} >All</h5></div>
 
                                       {departments?.map((dept, i) => (
                                       <div key={`dept${i}`} className='dropdown-dept' onClick={() => handleDeptClick(dept.name)} style={{cursor: 'pointer'}}><h5 style={{padding: '5px 10px', margin: '0px'}} >{dept.name}</h5></div>

@@ -5,17 +5,6 @@ import HowItWorks from '../Components/HowItWorks.js'
 import Footer from '../Components/Footer.js'
 
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-
-
-
-
-
 
 
 
