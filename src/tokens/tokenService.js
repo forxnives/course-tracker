@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 // would need to be an env variable
 
 
-const KEY = process.env.TOKEN_KEY
+const KEY = process.env.TOKEN_KEY || 'I have 10 toes'
 
 exports.createToken = (user) => {
   // payload + header, MIX IT UP with the key and generate the signature

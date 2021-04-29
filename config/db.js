@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const config = require('config');
 
 
-const mongo = process.env.MONGO_URI
+const mongo = process.env.MONGO_URI || "mongodb+srv://AdtelligentAdmin:Fy7YqhRv8ttqG93@cluster0.vtrdo.mongodb.net/CourseTracker?retryWrites=true&w=majority"
 
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      "mongodb+srv://AdtelligentAdmin:Fy7YqhRv8ttqG93@cluster0.vtrdo.mongodb.net/CourseTracker?retryWrites=true&w=majority",
+      mongo,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
