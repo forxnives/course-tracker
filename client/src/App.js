@@ -113,7 +113,7 @@ function App() {
 
       
       
-      const response = await fetch(`http://localhost:8082/users/me`, {
+      const response = await fetch(`${window.location.origin}/users/me`, {
         method: 'POST',
         headers: {
           "Content-Type": 'application/json'

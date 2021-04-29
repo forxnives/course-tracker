@@ -18,7 +18,7 @@ function LoginPage(props) {
 
 	
 		try{
-		  const response = await fetch('http://localhost:8082/users/login', {
+		  const response = await fetch(`${window.location.origin}/users/login`, {
 			method: 'POST',
 			headers: {
 			  "Content-Type": 'application/json'
