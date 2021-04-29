@@ -54,7 +54,7 @@ function CourseCard({userId, course, index}) {
                 {course?.comments.length ?  (<li><span> {course.comments.length} review{course.comments.length>1 && ('s')} </span></li>) : (null)}
                 <li>
                     <div className="score"><span>{ratingDisplay.adjective}<em>{`${course.ratingCalc.totalRatings} Ratings`}</em></span>
-                        <strong style={{backgroundColor: `${ratingDisplay.color}`}}>{course.ratingCalc.avgRating}</strong>
+                        <strong style={{backgroundColor: `${ratingDisplay.color}`}}>{Number.isNaN(course.ratingCalc.avgRating) ? ('N/A') : (course.ratingCalc.avgRating)}</strong>
                     
                     </div>
                 </li>
