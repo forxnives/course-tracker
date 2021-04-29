@@ -7,7 +7,7 @@ const mongo = process.env.MONGO_URI
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      mongo,
+      "mongodb+srv://AdtelligentAdmin:Fy7YqhRv8ttqG93@cluster0.vtrdo.mongodb.net/CourseTracker?retryWrites=true&w=majority",
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
